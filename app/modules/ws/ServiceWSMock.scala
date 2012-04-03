@@ -7,8 +7,8 @@ import play.api.Play
 
 class ServiceWSMock extends ServiceWS {
 	override def get(url: String) = Akka.future(new FakeResponse(url))
-	
-	class FakeResponse(url:String) extends Response(null) {
+
+	class FakeResponse(url: String) extends Response(null) {
 		override def header(name: String) = Some("")
 		override def status = 200
 		override lazy val body = Files.readFile(Play.current.getFile("fixtures/"+url.replaceAll("[/]", ">")))

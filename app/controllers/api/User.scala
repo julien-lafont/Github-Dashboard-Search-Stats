@@ -13,33 +13,32 @@ object User extends Controller {
 
 	def detail(user: String) = Action {
 		Async {
-			serviceGithubAuthor.load(user).map(user => 
+			serviceGithubAuthor.load(user).map(user =>
 				Ok(Json.toJson(user)))
 		}
 	}
-	
+
 	def repos(user: String) = Action {
 		Async {
 			serviceGithubAuthor.listRepositories(user).map(repos =>
-				Ok(Json.toJson(repos))
-			)
+				Ok(Json.toJson(repos)))
 		}
 	}
-	
+
 	def geolocalisation(user: String) = Action {
 		Async {
-			serviceGithubAuthor.load(user).map{ user =>
+			serviceGithubAuthor.load(user).map { user =>
 				if (user.location.length() <= 0) NotFound
-				
+
 				Async {
-					serviceYahooWs.findLocation(user.location).map{ json =>
-						val results:Int = (json\("ResultSet")\("Found")).as[Int]
-						if (results < 1)  NotFound
-						Ok((json\("ResultSet")\("Results"))(0))
+					serviceYahooWs.findLocation(user.location).map { json =>
+						val results: Int = (json \ ("ResultSet") \ ("Found")).as[Int]
+						if (results < 1) NotFound
+						Ok((json \ ("ResultSet") \ ("Results"))(0))
 					}
 				}
 			}
 		}
 	}
-	
+
 }

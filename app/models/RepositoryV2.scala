@@ -14,17 +14,15 @@ object RepositoryV2 {
 			(json \ "homepage").asOpt[String].getOrElse(""),
 			(json \ "url").as[String],
 			(json \ "watchers").as[Int],
-			(json \ "language").as[String]
-		)
+			(json \ "language").as[String])
 
 		def writes(r: RepositoryV2): JsValue = JsObject(Seq(
 			"name" -> JsString(r.name),
-			"username"-> JsString(r.username),
+			"username" -> JsString(r.username),
 			"homepage" -> JsString(r.homepage),
 			"url" -> JsString(r.url),
 			"watchers" -> JsNumber(r.watchers),
-			"language" -> JsString(r.language))
-		)
+			"language" -> JsString(r.language)))
 	}
 
 }
