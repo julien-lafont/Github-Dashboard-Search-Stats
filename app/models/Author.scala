@@ -30,7 +30,7 @@ object Author {
 	implicit object AuthorScoreFormat extends Writes[List[(Author, Int)]] {
 		def writes(couples: List[(Author, Int)]): JsValue = JsArray(
 			couples.map { elem =>
-				JsObject(List("auteur" -> Json.toJson(elem._1), "score" -> JsNumber(elem._2)))
+				JsObject(List("author" -> Json.toJson(elem._1), "score" -> JsNumber(elem._2)))
 			})
 	}
 
