@@ -17,8 +17,8 @@ GET				/api/v1/repository/:user/:repo/languages					controllers.api.Repository.l
 GET				/api/v1/user/:user/detail													controllers.api.User.detail(user: String)
 GET				/api/v1/user/:user/repositories										controllers.api.User.repos(user: String)
 GET				/api/v1/user/:user/geolocalisation								controllers.api.User.geolocalisation(user: String)
-#GET			/api/v1/stats/:user/languages											controllers.api.Stats.languages(user: String)
-#GET			/api/v1/stats/:user/:repo/impact									controllers.api.Stats.impact(user: String)
-#GET			/api/v1/stats/:user/:repo/timeline								controllers.api.Stats.timeline(user: String)
+GET				/api/v1/stats/:user/languages											controllers.api.Stats.languages(user: String)
+GET				/api/v1/stats/:user/:repo/impact									controllers.api.Stats.impact(user: String, repo: String)
+GET				/api/v1/stats/:user/:repo/timeline								controllers.api.Stats.timeline(user: String, repo: String)
 
-GET     /assets/*file               											controllers.Assets.at(path="/public", file)
+GET     	/assets/*file               											controllers.Assets.at(path="/public", file)

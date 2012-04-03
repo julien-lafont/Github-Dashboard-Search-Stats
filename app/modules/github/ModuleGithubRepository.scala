@@ -20,9 +20,9 @@ trait ServiceGithubRepository {
 	
 	def search(search: String, page: Int, language: String) : Promise[List[RepositoryV2]]
 	def load(user: String, repo: String) : Promise[RepositoryV3]
-	def listContributors(user: String, repo: String) : Promise[List[User]]
-	def listWatchers(user: String, repo: String) : Promise[List[User]]
-	def listCommits(user: String, repo: String) : Promise[List[Commit]]
+	def listContributors(user: String, repo: String, nb: Int = 30) : Promise[List[User]]
+	def listWatchers(user: String, repo: String, nb: Int = 30) : Promise[List[User]]
+	def listCommits(user: String, repo: String, nb: Int = 30) : Promise[List[Commit]]
 	def listLanguages(user: String, repo: String) : Promise[JsValue]
 }
 
@@ -38,18 +38,19 @@ class ServiceGithubRepositoryWs(override val serviceJsonWs: ServiceJsonWS) exten
 		serviceJsonWs.fetchWithCache(query).map(_.as[RepositoryV3])
 	}
 	
-	override def listContributors(user: String, repo: String) = {
-		val query = Query("github.query.list_contributors").set("user"->user).set("repo"->repo)
+	override def listContributors(user: String, repo: String, nb:Int = 30) = {
+		val query = Query("github.query.list_contributors").set("user"->user).set("repo"->repo).set("nb", nb)
 	  serviceJsonWs.fetchWithCache(query).map(_.as[List[User]])
 	}
 	
-	override def listWatchers(user: String, repo: String) = {
-		val query = Query("github.query.list_watchers").set("user"->user).set("repo"->repo)
+	override def listWatchers(user: String, repo: String, nb:Int = 30) = {
+		val query = Query("github.query.list_watchers").set("user"->user).set("repo"->repo).set("nb", nb)
 	  serviceJsonWs.fetchWithCache(query).map(_.as[List[User]])
 	}
 	
-  override def listCommits(user: String, repo: String) = {
-		val query = Query("github.query.list_commits").set("user"->user).set("repo"->repo)
+  override def listCommits(user: String, repo: String, nb:Int = 30) = {
+		val query = Query("github.query.list_commits").set("user"->user).set("repo"->repo).set("nb", nb)
+		println(query.toUrl.get)
 	  serviceJsonWs.fetchWithCache(query).map(_.as[List[Commit]])
 	}
   

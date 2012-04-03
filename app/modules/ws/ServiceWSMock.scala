@@ -14,4 +14,3 @@ class ServiceWSMock extends ServiceWS {
 		override lazy val body = Files.readFile(Play.current.getFile("fixtures/"+url.replaceAll("[/]", ">")))
 	}
 }
-	

@@ -18,7 +18,7 @@ final class ModuleGithubAuthor(override val ctx: Context) extends Module {
 trait ServiceGithubAuthor {
 	val serviceJsonWs: ServiceJsonWS 
 	def load(user: String) : Promise[Author]
-	def listRepositories(user: String) : Promise[List[RepositoryV3]]
+	def listRepositories(user: String, nb: Int = 30) : Promise[List[RepositoryV3]]
 }
 
 class ServiceGithubAuthorWs(override val serviceJsonWs: ServiceJsonWS) extends ServiceGithubAuthor  {
@@ -28,8 +28,8 @@ class ServiceGithubAuthorWs(override val serviceJsonWs: ServiceJsonWS) extends S
 		serviceJsonWs.fetchWithCache(query).map(_.as[Author]);
 	}
 	
-	override def listRepositories(user: String) = {
-		val query = Query("github.query.list_repositories").set("user"->user)
+	override def listRepositories(user: String, nb: Int = 30) = {
+		val query = Query("github.query.list_repositories").set("user"->user).set("nb", nb)
 		serviceJsonWs.fetchWithCache(query).map(_.as[List[RepositoryV3]])
 	}
 	

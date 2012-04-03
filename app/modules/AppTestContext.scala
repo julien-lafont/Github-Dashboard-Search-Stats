@@ -5,6 +5,7 @@ import modules.ws._
 import modules.jsonWs._
 import modules.github._
 import modules.yahoo._
+import modules.bi.ModuleExtractData
 
 object AppTestContext extends Context {
   override lazy val modules = 
@@ -12,7 +13,8 @@ object AppTestContext extends Context {
   	new ModuleGithubRepository(this) ::
   	new ModuleYahooWS(this) :: 
   	new ModuleWS(this) :: 
-  	new ModuleJsonWS(this) :: 
+  	new ModuleJsonWS(this) ::
+  	new ModuleExtractData(this) ::
   	Nil
 
   // Dans l'environnement de test, on mock les appels aux WebServices
@@ -22,5 +24,6 @@ object AppTestContext extends Context {
   val serviceGithubAuthor = from[ModuleGithubAuthor].service
   val serviceGithubRepository = from[ModuleGithubRepository].service
   val serviceYahooWs = from[ModuleYahooWS].service
-   
+  val serviceStats = from[ModuleExtractData].service
+  
 }

@@ -5,6 +5,9 @@ import play.api.mvc._
 import play.api.libs.json.Json
 import modules.AppContext._
 import utils.Query
+import play.api.libs.concurrent.Akka
+import play.api.Play.current
+import play.api.libs.concurrent.Promise
 
 object User extends Controller {
 

@@ -6,6 +6,7 @@ import play.api.libs.concurrent.Promise
 import play.api.libs.json.JsValue
 import play.api.cache.Cache
 import play.api.Play.current
+import play.api.PlayException
 
 class ServiceJsonWSImpl(override val serviceWs: ServiceWS) extends ServiceJsonWS {
 	
@@ -23,7 +24,10 @@ class ServiceJsonWSImpl(override val serviceWs: ServiceWS) extends ServiceJsonWS
 		query.toUrl match {
 			case Some(url: String) if query.isComplete =>
 				actionIfQueryValid(url)
-			case _ => throw new Exception("fuck")
+			case Some(url: String) if !query.isComplete => 
+				throw new PlayException("Bad Request", "Url is malformed "+url)
+			case _ =>
+				throw new PlayException("Bad Request", "Request is invalid")
 		}
 	}
 	
