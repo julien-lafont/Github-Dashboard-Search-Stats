@@ -1,7 +1,14 @@
-@(message: String)
+@()(implicit languages: List[Tuple2[String, Seq[String]]]) 
 
-@main("Welcome to Play 2.0") {
-    
-    @play20.welcome(message)
-    
+@main("Zenexigit par Julien Lafont") {
+
+	<div class="edito">    
+    <h1>WTF ?</h1>
+		<p>Zenexigit is a little tool to look for projects on Github and show statistics on these project</p>
+		<p>Tools : <a href="#">PlayFramework 2.0</a>, Scala, Backbone and my keyboard.</p>
+
+		<h1>Public API</h1>
+		<p>This server is a middleware between Github, Yahoo and any other webservices. It normalizes and assure a sustainable API.</p>
+		<p>Documentation for <a href="#">API V1</a></p>
+   </div> 
 }

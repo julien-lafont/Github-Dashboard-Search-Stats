@@ -1,0 +1,115 @@
+.clear {
+	clear: both
+}
+
+/* Modif design de base */
+header.inner {
+	max-width: 850px !important;
+}
+
+/* Bloc recherche */
+#search {
+	width: 300px;
+	position: absolute;
+	right: 100px;
+	top: 0px;
+}
+
+#search select {
+	border: 1px solid !important; /* bug chrome */
+}
+
+#search form {
+	border: 2px solid #333;
+	border-bottom-left-radius: 20px;
+	padding: 10px 20px;
+	height: 120px;
+}
+#search form.before {
+	overflow: hidden;
+}
+#search form.after {
+	overflow: visible;
+}
+
+#search input[type=search] {
+	width: 250px
+}
+
+#search form .control-label {
+	width: 70px;
+	text-align: left
+}
+
+#search form .controls {
+	margin-left: 80px
+}
+
+#search .actions {
+	margin-top: 10px;
+}
+#search .more {
+	margin-top: 20px;	
+}
+
+/* Résultats */
+.result {
+	
+	width: 100%;
+	color: #222;
+	background-color: #fff;
+	
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	width: 100%;
+	
+	padding: 10px;
+	box-shadow: 0 0 10px rgba(0,0,0,.1);
+}
+
+.result .line {
+	display: table;
+	width: 100%
+}
+
+.result .avatar {
+	vertical-align:top;
+	display:table-cell;
+	width: 100px;
+	text-align:center
+}
+
+.result .detail {
+	display:table-cell;	
+	vertical-align: top
+}
+
+.result .detail .badge {
+	vertical-align: super
+}
+
+.result .detail h4 {
+	margin-top: 0;
+}
+
+.result .line span {
+	display:inline-block;
+	margin-right: 20px;
+}
+
+.result .actions {
+	vertical-align:middle;
+	display:table-cell;
+	width: 100px;
+}
+
+.result p {
+	margin-bottom: 0;
+}
+
+.result span.label {
+	font-family: arial;
+	margin-bottom: 5px;
+	margin-right: 10px	
+}

@@ -1,0 +1,147 @@
+popular:
+  - ActionScript
+  - C
+  - C#
+  - C++
+  - Common Lisp
+  - CSS
+  - Diff
+  - Emacs
+  - Erlangx
+  - Haskell
+  - HTML
+  - Java
+  - JavaScript
+  - Lua
+  - Objective-C
+  - Perl
+  - PHP
+  - Ruby
+  - Scala
+  - Scheme
+  - TeX
+  - XML
+others:
+  - Ada
+  - Apex
+  - AppleScript
+  - Arc
+  - Arduino
+  - ASP
+  - Assembly
+  - AutoHotkey
+  - Batchfile
+  - Befunge
+  - BlitzMax
+  - Boo
+  - Brainfuck
+  - Bro
+  - C-ObjDump
+  - C2hs Haskell
+  - ChucK
+  - Clojure
+  - CMake
+  - CoffeeScript
+  - ColdFusion
+  - Coq
+  - Cpp-ObjDump
+  - Cucumber
+  - Cython
+  - D
+  - D-ObjDump
+  - Darcs Patch
+  - Delphi
+  - Dylan
+  - eC
+  - Ecere Projects
+  - Eiffel
+  - Elixir
+  - F#
+  - Factor
+  - Fancy
+  - Fantom
+  - FORTRAN
+  - GAS
+  - Genshi
+  - Gentoo Ebuild
+  - Gentoo Eclass
+  - Go
+  - Gosu
+  - Groff
+  - Groovy
+  - Groovy Server Pages
+  - Haml
+  - HaXe
+  - HTML+Django
+  - HTML+ERB
+  - HTML+PHP
+  - INI
+  - Io
+  - Ioke
+  - IRC log
+  - Java Server Pages
+  - Kotlin
+  - LilyPond
+  - Literate Haskell
+  - LLVM
+  - Logtalk
+  - Makefile
+  - Mako
+  - Markdown
+  - Matlab
+  - Max/MSP
+  - Mirah
+  - Moocode
+  - mupad
+  - Myghty
+  - Nemerle
+  - Nimrod
+  - Nu
+  - NumPy
+  - ObjDump
+  - Objective-J
+  - OCaml
+  - ooc
+  - Opa
+  - OpenCL
+  - OpenEdge ABL
+  - Parrot
+  - Parrot Assembly
+  - Parrot Internal Representation
+  - PowerShell
+  - Prolog
+  - Puppet
+  - Pure Data
+  - R
+  - Racket
+  - Raw token data
+  - Rebol
+  - Redcode
+  - reStructuredText
+  - RHTML
+  - Rust
+  - Sage
+  - Sass
+  - Scilab
+  - SCSS
+  - Self
+  - Shell
+  - Smalltalk
+  - Smarty
+  - Standard ML
+  - SuperCollider
+  - Tcl
+  - Tcsh
+  - Tea
+  - Text
+  - Textile
+  - Turing
+  - Twig
+  - Vala
+  - Verilog
+  - VHDL
+  - VimL
+  - Visual Basic
+  - XQuery
+  - XS
+  - YAML
