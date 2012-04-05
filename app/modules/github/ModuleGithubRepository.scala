@@ -22,7 +22,7 @@ trait ServiceGithubRepository {
 	def load(user: String, repo: String): Promise[RepositoryV3]
 	def listContributors(user: String, repo: String, nb: Int = 30): Promise[List[User]]
 	def listWatchers(user: String, repo: String, nb: Int = 30): Promise[List[User]]
-	def listCommits(user: String, repo: String, nb: Int = 30): Promise[List[Commit]]
+	def listCommits(user: String, repo: String, nb: Int = 30, lastSha: Option[String] = None): Promise[List[Commit]]
 	def listLanguages(user: String, repo: String): Promise[JsValue]
 }
 
@@ -48,8 +48,8 @@ class ServiceGithubRepositoryWs(override val serviceJsonWs: ServiceJsonWS) exten
 		serviceJsonWs.fetchWithCache(query).map(_.as[List[User]])
 	}
 
-	override def listCommits(user: String, repo: String, nb: Int = 30) = {
-		val query = Query("github.query.list_commits").set("user" -> user).set("repo" -> repo).set("nb", nb)
+	override def listCommits(user: String, repo: String, nb: Int = 30, lastSha: Option[String] = None) = {
+		val query = Query("github.query.list_commits").set("user" -> user).set("repo" -> repo).set("nb" -> nb).set("sha" -> lastSha.getOrElse(""))
 		println(query.toUrl.get)
 		serviceJsonWs.fetchWithCache(query).map(_.as[List[Commit]])
 	}

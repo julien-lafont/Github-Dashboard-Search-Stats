@@ -14,9 +14,9 @@ object Repository extends Controller {
 		}
 	}
 
-	def commits(user: String, repo: String) = Action {
+	def commits(user: String, repo: String, nb: Int=30, lastSha: Option[String]) = Action {
 		Async {
-			serviceGithubRepository.listCommits(user, repo).map(commits =>
+			serviceGithubRepository.listCommits(user, repo, nb, lastSha).map(commits =>
 				Ok(Json.toJson(commits)))
 		}
 	}

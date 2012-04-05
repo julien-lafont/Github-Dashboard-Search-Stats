@@ -8,7 +8,8 @@ case class Commit(
 	url: String,
 	author: Author,
 	message: String,
-	date: DateTime)
+	date: DateTime,
+	sha: String)
 
 object Commit {
 
@@ -19,13 +20,15 @@ object Commit {
 			(json \ "url").as[String],
 			(json \ "author").asOpt[Author].getOrElse(Author("Inconnu", "", "")),
 			(json \ "commit" \ "message").as[String],
-			(json \ "commit" \ "author" \ "date").as[DateTime])
+			(json \ "commit" \ "author" \ "date").as[DateTime],
+			(json \ "sha").as[String])
 
 		def writes(c: Commit): JsValue = JsObject(Seq(
-			"url" -> JsString(c.url),
-			"author" -> Json.toJson(c.author),
+			"url" 		-> JsString(c.url),
+			"author" 	-> Json.toJson(c.author),
 			"message" -> JsString(c.message),
-			"date" -> Json.toJson(c.date)))
+			"date" 		-> Json.toJson(c.date),
+			"sha"			-> Json.toJson(c.sha)))
 	}
 
 }

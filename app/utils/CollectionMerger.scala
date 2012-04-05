@@ -3,7 +3,7 @@ package utils
 object CollectionMerger {
 
 	/**
-	 * Merge a map on its key with a custom function on this value
+	 * Merge a map on h key with a custom function on this value
 	 * (No, i've not written this method !)
 	 * List(Map(A->10), Map(B->15, A->7)) => Map(A->17, B->15)
 	 */
