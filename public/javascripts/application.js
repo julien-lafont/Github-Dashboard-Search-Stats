@@ -1,10 +1,9 @@
 (function() {
 
-	window.zen = {};
-	zen.view = {};
-	zen.model = {};
-	zen.util = {};
-	zen.cache = {}
+	window.zen 	= {};	// Zenexigit namespace
+	zen.view 	= {};
+	zen.model 	= {};
+	zen.util 	= {};
 	
 })();
 
@@ -13,56 +12,47 @@ $(function() {
 		url: "/client/search/"
 	});
 	
-	$("#search select").chosen();
+	$("#search select").chosen({ allow_single_deselect: true });
 	$().UItoTop({ easingType: 'easeOutQuart' });
 	
 });
 
 (function($) {
 
-	zen.cache.repos = {};
-	zen.results = [];
+	zen.results = [];		
 	zen.config = {
 		pagination_max: 10
 	};
-	zen.store = window.localStorage;
+	
+	zen.store = new Lawnchair('repos', $.noop);	// Localstorage from Lawnchair
 	
 	zen.model.Repo = Backbone.Model.extend({
 
 		url : function url() {
 			return '/api/v1/repository/' + this.get('user') + '/' + this.get('repo') + '/detail';
 		},
-
-		initialize : function Repository() { 
-		  this.key = this.get('user') + '-' + this.get('repo');
-		},
 		
 		toPresenter: function toPresenter() {
 			var repo = this.toJSON();
 			repo.id = repo.owner.login+"-"+repo.name;
 			return repo;
-		},
-		
-		fetchCache: function fetch() {
-			var json = zen.store.getItem(this.key);
-			if (!json) {
-				
-			}
 		}
 
 	});
 
-	zen.model.Repo.load = function load(id) {
-		var key = id.user+"-"+id.repo;
-		var repo = zen.cache.repos[key];
-		if (!repo) {
-			repo = new zen.model.Repo(id)
-			repo.fetchCache();
-			zen.cache.repos[key] = repo;
-		} else {
-			console.log("IN CACHE");
-		}
-		return repo;
+	zen.model.Repo.load = function load(id, callback) {
+		var key = id.user+"/"+id.repo;
+		zen.store.get(key, function(data) { // Try to load repository from localstorage
+			if (data) {
+				callback(new zen.model.Repo(data));
+			} else {
+				var node = new zen.model.Repo(id);	// Fetch and save repo in cache
+				node.fetch({ success: function() {
+					zen.store.save(node.toJSON());
+					callback(node);
+				}});
+			}
+		});
 	}
 
 	zen.model.RepoSet = Backbone.Collection.extend({
@@ -79,11 +69,20 @@ $(function() {
 		}
 	})
 	
-	zen.model.RepoSet.load = function load(query, page) {
-		var id = query+"/"+page;
-		repoSet = new zen.model.RepoSet({query: query, page: page});
-		repoSet.fetch({add: true});
-		return repoSet;
+	zen.model.RepoSet.load = function load(query, page, callback) {	
+		var key = query+"/"+page;
+		zen.store.get(key, function(data) {
+			if (data) {
+				callback(new zen.model.RepoSet(data));
+			} else {
+				var nodeSet = new zen.model.RepoSet({ query: query, page: page });
+				nodeSet.fetch({success: function(list) {
+					var nodeSetSave = nodeSet.toJSON(); nodeSetSave.key = key;
+					zen.store.save(nodeSetSave);
+					callback(nodeSet);
+				}})
+			}
+		})
 	}
 
 	
@@ -138,25 +137,28 @@ $(function() {
 		
 		initialize: function initialize() {
 			_.bindAll(this,  'add');
-			this.model.bind('add', this.add);
 			
+			zen.results = []; // reset
 			this.pagination = zen.config.pagination_max;
-			console.log(this.pagination);
 			
-			zen.results = [];
+			// Add repositories in view
+			this.collection.each(function(repo) { this.add(repo) }, this);
+			
+			// Activate infiniteScroll on this page
 			$(window).scroll(zen.util.infiniteScroll);
 		},
 		
-		add: function add(e) {
+		add: function add(repoId) {
 			
 			// Fetch and display first results immediatly
-			if (this.pagination >= 0) {
-				this.pagination--;
-				var repo = zen.model.Repo.load({user: e.get('username'), repo: e.get('name')});
-				new zen.view.RepoResumeView({model: repo})
+			if (--this.pagination >= 0) {
+				zen.model.Repo.load({user: repoId.get('username'), repo: repoId.get('name')}, function(node) {
+					new zen.view.RepoResumeView({model: node}).render();
+				});
+				
 			// Store other results for pagination
 			} else {
-				zen.results.push(e);
+				zen.results.push(repoId);
 				zen.config.infiniteScrollOn = true;
 			}
 		}
@@ -179,21 +181,22 @@ $(function() {
 	
 	
 	zen.util.infiniteScroll = function() {
+		
 		if (!zen.config.infiniteScrollOn) return;
 		
-		if($(window).scrollTop() >= $(document).height() - $(window).height() - 100)
+		if ($(window).scrollTop() >= $(document).height() - $(window).height() - 50)
 		{
 			if (zen.results.length==0) {
 				$(".no-more-results:hidden").fadeIn(1000);
 			} else {
 				zen.config.infiniteScrollOn = false;
 				for (var i=0; i<zen.config.pagination_max && zen.results.length>0; i++) {
-					var e = zen.results.shift();
-					var repo = zen.model.Repo.load({user: e.get('username'), repo: e.get('name')});
-					new zen.view.RepoResumeView({model: repo})
+					var repoId = zen.results.shift();
+					zen.model.Repo.load({user: repoId.get('username'), repo: repoId.get('name')}, function(node) {
+						new zen.view.RepoResumeView({model: node}).render();
+					});
 				}
 				zen.config.infiniteScrollOn = true;
-				
 			}
 		}
 	}

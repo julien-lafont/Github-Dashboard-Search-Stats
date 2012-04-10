@@ -57,6 +57,7 @@
 					$elem = $(this);
 					if ($elem.data("query") && $elem.val() != "") {
 						url += $elem.data("query")+$elem.val()+" ";
+						valid = true;
 					}
 				});
 				

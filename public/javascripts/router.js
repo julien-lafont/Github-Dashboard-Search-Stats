@@ -27,8 +27,9 @@ zen.Router = Backbone.Router.extend({
 	
 	search : function(query) {
 		new zen.view.SearchLayout().render();
-		var repoList = zen.model.RepoSet.load(query, 1);
-		new zen.view.SearchView({model: repoList});
+		var repoList = zen.model.RepoSet.load(query, 1, function(list) {
+			new zen.view.SearchView({ collection: list });
+		});
 	},
 	
 	detail : function(user, repo) {

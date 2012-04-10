@@ -7,6 +7,10 @@ header.inner {
 	max-width: 850px !important;
 }
 
+
+
+
+
 /* Bloc recherche */
 #search {
 	width: 300px;
@@ -51,6 +55,10 @@ header.inner {
 #search .more {
 	margin-top: 20px;	
 }
+
+
+
+
 
 /* Résultats */
 .result {
@@ -132,6 +140,8 @@ header.inner {
 	margin-right: 10px	
 }
 
+
+
 .no-more-results {
 	display: none;
 	padding: 8px 35px 8px 14px;
@@ -143,6 +153,15 @@ header.inner {
 	border-radius: 4px;
 	background-color: #f2dede;
 	color: #b94a48;
+}
+
+.load {
+	border: none;
+	box-shadow: none;	
+}
+
+.waiting {
+	text-align: center;
 }
 
 

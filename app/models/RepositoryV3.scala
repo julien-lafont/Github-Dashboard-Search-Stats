@@ -44,7 +44,8 @@ object RepositoryV3 {
 			"language" -> JsString(r.language),
 			"createdAt" -> Json.toJson(r.createdAt),
 			"description" -> JsString(r.description),
-			"owner" -> Json.toJson(r.owner)))
+			"owner" -> Json.toJson(r.owner),
+			"key" -> JsString(r.owner.login+"/"+r.name)))
 	}
 
 }
