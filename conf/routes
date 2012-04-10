@@ -3,7 +3,9 @@
 # ~~~~
 
 # Home page
-GET     /                           											controllers.Application.index
+GET     /                           											controllers.Application.index(url: Option[String] = None)
+
+GET     /client/*url                           											controllers.Application.index(url: Option[String])
 
 # API V1	
 GET				/api/v1/repository/search/:query									controllers.api.Finder.searchRepositories(query: String, page: Int=1, language: String="")

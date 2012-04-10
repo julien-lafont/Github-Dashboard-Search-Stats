@@ -10,7 +10,7 @@ object Application extends Controller {
 
 	implicit val languages : List[Tuple2[String, Seq[String]]] = LanguagesFilter.list
 	
-	def index = Cached("homepage") {
+	def index(url: Option[String]) = Cached("homepage") {
 		Action {
 			Ok(views.html.index())
 		}

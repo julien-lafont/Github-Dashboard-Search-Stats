@@ -1,0 +1,4 @@
+@(local: String, distant: String, condition: String)
+
+<script src="@distant"></script>
+<script>@condition || document.write('<script src="@routes.Assets.at("javascripts/vendor/"+local)"><\/script>')</script>

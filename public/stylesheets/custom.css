@@ -65,7 +65,14 @@ header.inner {
 	width: 100%;
 	
 	padding: 10px;
+	margin-bottom: 15px;
 	box-shadow: 0 0 10px rgba(0,0,0,.1);
+}
+
+.result h4 a {
+	display: inline-block;
+	max-width: 340px;
+	overflow: hidden;
 }
 
 .result .line {
@@ -80,9 +87,20 @@ header.inner {
 	text-align:center
 }
 
+.result .avatar img {
+	width: 82px;
+	height: 82px
+}
+
 .result .detail {
-	display:table-cell;	
-	vertical-align: top
+	vertical-align: top;
+	width: 425px;
+	display: inline-block;
+	word-wrap:break-word;
+}
+
+.result .detail p {
+	word-wrap:break-world;
 }
 
 .result .detail .badge {
@@ -112,4 +130,56 @@ header.inner {
 	font-family: arial;
 	margin-bottom: 5px;
 	margin-right: 10px	
+}
+
+.no-more-results {
+	display: none;
+	padding: 8px 35px 8px 14px;
+	margin-bottom: 18px;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	border: 1px solid #eed3d7;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	background-color: #f2dede;
+	color: #b94a48;
+}
+
+
+
+/*
+|--------------------------------------------------------------------------
+| UItoTop jQuery Plugin 1.1
+| http://www.mattvarone.com/web-design/uitotop-jquery-plugin/
+|--------------------------------------------------------------------------
+*/
+
+#toTop {
+	display:none;
+	text-decoration:none;
+	position:fixed;
+	bottom:10px;
+	right:10px;
+	overflow:hidden;
+	width:51px;
+	height:51px;
+	border:none;
+	text-indent:-999px;
+	background:url(../images/ui.totop.png) no-repeat left top;
+}
+
+#toTopHover {
+	background:url(../images/ui.totop.png) no-repeat left -51px;
+	width:51px;
+	height:51px;
+	display:block;
+	overflow:hidden;
+	float:left;
+	opacity: 0;
+	-moz-opacity: 0;
+	filter:alpha(opacity=0);
+}
+
+#toTop:active, #toTop:focus {
+	outline:none;
 }
