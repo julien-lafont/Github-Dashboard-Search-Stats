@@ -64,6 +64,14 @@
 
 				</form>
 			</section>
+			
+			<div id="nuke">
+				<a href="javascript:zen.store.nuke(); document.location.reload();" title="Debug: clear all cache"><i class="icon-fire icon-white"></i></a>
+			</div>
+			
+			<div id="offlineMarker">
+				<img src="@routes.Assets.at("images/offline.png")" alt="offline" />
+			</div>
 
 		</header>
 
@@ -136,11 +144,12 @@
 		@helpers.jsCDN("handlebars.min.js",  	"//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0.beta2/handlebars.min.js", "window.handlebars")
 		@helpers.jsCDN("backbone.min.js",  		"//cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js", "window.backbone")
 	}
-	
+
+	<script src="@routes.Assets.at("javascripts/plugins/easing.js")"></script>	
 	<script src="@routes.Assets.at("javascripts/plugins/chosen.jquery.min.js")"></script>
 	<script src="@routes.Assets.at("javascripts/plugins/zen.search.jquery.js")"></script>
-	<script src="@routes.Assets.at("javascripts/plugins/easing.js")"></script>
-	<script src="@routes.Assets.at("javascripts/plugins/jquery.ui.totop.js")"></script>
+	<script src="@routes.Assets.at("javascripts/plugins/totop.jquery.js")"></script>
+	<script src="@routes.Assets.at("javascripts/plugins/zen.offline.jquery.js")"></script>
 	
 	<script src="@routes.Assets.at("javascripts/application.js")"></script>
 	<script src="@routes.Assets.at("javascripts/router.js")"></script>

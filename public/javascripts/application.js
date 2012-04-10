@@ -3,7 +3,8 @@
 	window.zen 	= {};	// Zenexigit namespace
 	zen.view 	= {};
 	zen.model 	= {};
-	zen.util 	= {};
+	zen.util 	= {}
+	zen.store 	= new Lawnchair('repos', $.noop);	// Localstorage from Lawnchair
 	
 })();
 
@@ -15,6 +16,8 @@ $(function() {
 	$("#search select").chosen({ allow_single_deselect: true });
 	$().UItoTop({ easingType: 'easeOutQuart' });
 	
+	$("#offlineMarker").offline();
+	
 });
 
 (function($) {
@@ -23,8 +26,6 @@ $(function() {
 	zen.config = {
 		pagination_max: 10
 	};
-	
-	zen.store = new Lawnchair('repos', $.noop);	// Localstorage from Lawnchair
 	
 	zen.model.Repo = Backbone.Model.extend({
 
@@ -201,6 +202,9 @@ $(function() {
 		}
 	}
 	
+	zen.util.isOnline = function() {
+		return !('onLine' in navigator) || navigator.onLine;
+	}
 	
 
 })(window.jQuery);

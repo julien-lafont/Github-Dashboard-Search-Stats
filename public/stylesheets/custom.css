@@ -58,6 +58,19 @@ header.inner {
 
 
 
+#nuke {
+	position: absolute;
+	top: 5px;
+	right: 15px;
+}
+
+#offlineMarker img {
+	position: absolute;
+	top: 145px;
+	right: 6px;
+	border: none;
+	box-shadow: none;
+}
 
 
 /* Résultats */
@@ -163,7 +176,6 @@ header.inner {
 .waiting {
 	text-align: center;
 }
-
 
 
 /*
