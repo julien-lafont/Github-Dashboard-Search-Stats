@@ -34,12 +34,12 @@ object Commit {
 	
 	implicit object RepositoryTimelineFormat extends Writes[List[(LocalDate, Int)]] {
 		def writes(timeline: List[(LocalDate, Int)]): JsValue = JsArray(
-				timeline.map { elem => 
-					JsObject(List(
-							"date" -> JsString(elem._1.getDayOfMonth()+"/"+elem._1.getMonthOfYear()+"/"+elem._1.getYearOfCentury()), 
-							"nb"	 -> JsNumber(elem._2)
-					))	
-				}
+			timeline.map { elem => 
+				JsObject(List(
+					"date" -> JsString(elem._1.getDayOfMonth()+"/"+elem._1.getMonthOfYear()+"/"+elem._1.getYearOfCentury()), 
+					"nb"	 -> JsNumber(elem._2)
+				))	
+			}
 		)
 	}
 
