@@ -70,6 +70,7 @@ header.inner {
 	right: 6px;
 	border: none;
 	box-shadow: none;
+	display: none
 }
 
 
@@ -155,7 +156,7 @@ header.inner {
 
 
 
-.no-more-results {
+.no-more-results, .no-result {
 	display: none;
 	padding: 8px 35px 8px 14px;
 	margin-bottom: 18px;
@@ -177,6 +178,12 @@ header.inner {
 	text-align: center;
 }
 
+
+
+
+.stats .commiters, .stats .watchers {
+	overflow-x: scroll;
+}
 
 /*
 |--------------------------------------------------------------------------

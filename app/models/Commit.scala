@@ -3,6 +3,7 @@ package models
 import play.api.libs.json._
 import java.util.Date
 import org.joda.time.DateTime
+import org.joda.time.LocalDate
 
 case class Commit(
 	url: String,
@@ -29,6 +30,17 @@ object Commit {
 			"message" -> JsString(c.message),
 			"date" 		-> Json.toJson(c.date),
 			"sha"			-> Json.toJson(c.sha)))
+	}
+	
+	implicit object RepositoryTimelineFormat extends Writes[List[(LocalDate, Int)]] {
+		def writes(timeline: List[(LocalDate, Int)]): JsValue = JsArray(
+				timeline.map { elem => 
+					JsObject(List(
+							"date" -> JsString(elem._1.getDayOfMonth()+"/"+elem._1.getMonthOfYear()+"/"+elem._1.getYearOfCentury()), 
+							"nb"	 -> JsNumber(elem._2)
+					))	
+				}
+		)
 	}
 
 }

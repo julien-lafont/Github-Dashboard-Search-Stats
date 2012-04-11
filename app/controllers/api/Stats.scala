@@ -1,6 +1,7 @@
 package controllers.api
 
 import models._
+import models.Commit.RepositoryTimelineFormat
 import play.api.mvc._
 import play.api.libs.json.Json
 import modules.AppContext._
@@ -23,8 +24,9 @@ object Stats extends Controller {
 
 	def timeline(user: String, repo: String) = Action {
 		Async {
-			serviceStats.extractCommitsInTimeline(user, repo).map(timeline =>
-				Ok(Json.toJson(timeline)))
+			serviceStats.extractCommitsInTimeline(user, repo).map(timeline => {
+				println(timeline)
+				Ok(Json.toJson(timeline))})
 		}
 	}
 

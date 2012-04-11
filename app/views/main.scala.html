@@ -1,12 +1,12 @@
-@(title: String)(content: Html)(implicit languages: List[Tuple2[String, Seq[String]]])    
+@(title: String)(content: Html)(implicit languages: List[Tuple2[String, Seq[String]]])
 @import play.api.Play
 
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="chrome=1" />
 	<meta name="description" content="Zenexigit by Julien Lafont" />
 	
 	<link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")" />
@@ -21,6 +21,7 @@
 
 	<div id="header_wrap" class="outer">
 		<header class="inner">
+			
 			<h1 id="project_title"><a href="/">Zenexigit</a></h1>
 			<h2 id="project_tagline">Zenexity homework @@ Julien Lafont</h2>
 
@@ -65,73 +66,67 @@
 				</form>
 			</section>
 			
-			<div id="nuke">
-				<a href="javascript:zen.store.nuke(); document.location.reload();" title="Debug: clear all cache"><i class="icon-fire icon-white"></i></a>
-			</div>
-			
 			<div id="offlineMarker">
 				<img src="@routes.Assets.at("images/offline.png")" alt="offline" />
 			</div>
-
+			
+			@if(Play.isDev(play.api.Play.current)) {
+			<div id="nuke">
+				<a href="javascript:zen.store.nuke(); document.location.reload();" title="Debug: clear all cache"><i class="icon-fire icon-white"></i></a>
+			</div>
+			}
+			
 		</header>
 
 	</div>
 
-	<!-- MAIN CONTENT -->
 	<div id="main_content_wrap" class="outer">
 		<section id="main_content" class="inner">
-
 			@content
-			
 		</section>
 	</div>
 	
-	<script type="text/template" id="template-repo-detail">
-		<strong>{{name}}</strong> (<a href="{{url}}">Open</a>)
-	</script>
-
-	<script type="text/template" id="template-repo-resume">
-		<div class="result" style="display:none" id="repo-resume-{{id}}">
-			<div class="line">
-				<div class="avatar">
-					<a href="{{owner.url}}">
-						<img src="{{owner.avatar}}" alt="avatar" />
-					</a>
-				</div>
-				<div class="detail">
-					<h4><a href="{{url}}" target="blank">{{name}}</a> <span class="badge badge-error" title="Forks">{{forks}}</span></h4>
-					<p>{{{description}}}</p>
-				</div>
-				<div class="actions">
-					<a class="btn btn-inverse">Show detail</a>
-				</div>
-			</div>
-			<div class="line">
-				<p>
-					<span title="Author"><i class="icon-user"></i> {{owner.login}}</span> 
-					<span title="Watchers"><i class="icon-eye-open"></i> {{watchers}}</span> 
-					<span title="Issues"><i class="icon-exclamation-sign"></i> {{issues}}</span> 
-					<span title="Created at"><i class="icon-calendar"></i> {{createdAt}}</span> 
-					<span title="Homepage"><a href="{{homepage}}"><i class="icon-home"></i></a></span> 
-					{{#if is_fork}}<span class="label label-info" title="Is a fork">Fork</span>{{/if}}
-					<span class="label label-{{#if is_private}}important{{else}}success{{/if}}">{{#if is_private}}Private{{else}}Public{{/if}}</span>
-				</p>
-
-			</div>
+	@** Include templates **@
+	@templates.layoutSearch()
+	@templates.repoResume();
+	
+	<script type="text/template" id="template-layout-detail">
+		<h4>Commiters</h4>
+		<div class="commiters">
+			<p><img src="@routes.Assets.at("images/generator-w.gif")" class="load" /></p>
+		</div>
+		
+		<h4>Watchers</h4>
+		<div class="watchers">
+			<p><img src="@routes.Assets.at("images/generator-w.gif")" class="load" /></p>
+		</div>
+		
+		<h4>Impact</h4>
+		<div class="impact">
+			<p><img src="@routes.Assets.at("images/generator-w.gif")" class="load" /></p>
+		</div>
+		
+		<h4>Timeline</h4>
+		<div class="timeline">
+			<p><img src="@routes.Assets.at("images/generator-w.gif")" class="load" /></p>
+		</div>
+		
+		<h4>Geolocalisation</h4>
+		<div class="geoloc">
+			<p><img src="@routes.Assets.at("images/generator-w.gif")" class="load" /></p>
+		</div>
+		
+		<h4>Languages</h4>
+		<div class="languages">
+			<p><img src="@routes.Assets.at("images/generator-w.gif")" class="load" /></p>
 		</div>
 	</script>
 	
-	<script type="text/template" id="template-layout-search">
-		<h2>Results</h2>
-		<div id="results">
-			<div class="waiting">
-				<p>Search in progress...</p>
-				<p><img src="@routes.Assets.at("images/generator.gif")" class="load" /></p>
-			</div>
-		</div>
-		<div class="no-more-results alert alert-error">No more results !</div>
+	<script type="text/template" id="template-stats-commiters">
+		<a href="{{url}}" title="{{login}}" class="avatar"><img src="{{avatar}}" alt="" /></a>
 	</script>
 	
+	@** Fusionner ça ! **@
 	@if(Play.isDev(play.api.Play.current)) {
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.js"></script>
 		<script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore.js"></script>
@@ -145,6 +140,7 @@
 		@helpers.jsCDN("backbone.min.js",  		"//cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js", "window.backbone")
 	}
 
+	@** Minimiser l'ensemble ? **@
 	<script src="@routes.Assets.at("javascripts/plugins/easing.js")"></script>	
 	<script src="@routes.Assets.at("javascripts/plugins/chosen.jquery.min.js")"></script>
 	<script src="@routes.Assets.at("javascripts/plugins/zen.search.jquery.js")"></script>
@@ -153,6 +149,12 @@
 	
 	<script src="@routes.Assets.at("javascripts/application.js")"></script>
 	<script src="@routes.Assets.at("javascripts/router.js")"></script>
-
+	
+	<script src="@routes.Application.javascriptRoutes"></script>
+	
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script type="text/javascript">
+		 google.load('visualization', '1.0', {'packages': ['corechart', 'geochart', 'map']});
+	</script>
 </body>
 </html>

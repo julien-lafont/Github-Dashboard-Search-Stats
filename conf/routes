@@ -1,28 +1,26 @@
-# Routes
-# This file defines all application routes (Higher priority routes first)
-# ~~~~
-
 # Home page
-GET     /                           											controllers.Application.index(url: Option[String] = None)
+GET        /                                                 controllers.Application.index(url: Option[String] = None)
+GET        /client/*url                                      controllers.Application.index(url: Option[String])
 
-GET     /client/*url                           											controllers.Application.index(url: Option[String])
+# API V1  
+GET        /api/v1/repository/search/:query                  controllers.api.Finder.searchRepositories(query: String, page: Int=1, language: String="")
+GET        /api/v1/repository/search/:query/:page            controllers.api.Finder.searchRepositories(query: String, page: Int, language: String="")
+GET        /api/v1/repository/search/:query/:page/:language  controllers.api.Finder.searchRepositories(query: String, page: Int, language: String)
+GET        /api/v1/repository/:user/:repo/detail             controllers.api.Repository.detail(user: String, repo: String)
+GET        /api/v1/repository/:user/:repo/commits            controllers.api.Repository.commits(user: String, repo: String, nb: Int=30, sha: Option[String])
+GET        /api/v1/repository/:user/:repo/commits/:nb        controllers.api.Repository.commits(user: String, repo: String, nb: Int, sha: Option[String])
+GET        /api/v1/repository/:user/:repo/commits/:nb/:sha   controllers.api.Repository.commits(user: String, repo: String, nb: Int, sha: Option[String])
+GET        /api/v1/repository/:user/:repo/contributors       controllers.api.Repository.contributors(user: String, repo: String)
+GET        /api/v1/repository/:user/:repo/watchers           controllers.api.Repository.watchers(user: String, repo: String)
+GET        /api/v1/repository/:user/:repo/languages          controllers.api.Repository.languages(user: String, repo: String)
+GET        /api/v1/user/:user/detail                         controllers.api.User.detail(user: String)
+GET        /api/v1/user/:user/repositories                   controllers.api.User.repos(user: String)
+GET        /api/v1/user/:user/geolocalisation                controllers.api.User.geolocalisation(user: String)
+GET        /api/v1/stats/:user/languages                     controllers.api.Stats.languages(user: String)
+GET        /api/v1/stats/:user/:repo/impact                  controllers.api.Stats.impact(user: String, repo: String)
+GET        /api/v1/stats/:user/:repo/timeline                controllers.api.Stats.timeline(user: String, repo: String)
 
-# API V1	
-GET				/api/v1/repository/search/:query									controllers.api.Finder.searchRepositories(query: String, page: Int=1, language: String="")
-GET				/api/v1/repository/search/:query/:page						controllers.api.Finder.searchRepositories(query: String, page: Int, language: String="")
-GET				/api/v1/repository/search/:query/:page/:language	controllers.api.Finder.searchRepositories(query: String, page: Int, language: String)
-GET				/api/v1/repository/:user/:repo/detail							controllers.api.Repository.detail(user: String, repo: String)
-GET				/api/v1/repository/:user/:repo/commits						controllers.api.Repository.commits(user: String, repo: String, nb: Int=30, sha: Option[String])
-GET				/api/v1/repository/:user/:repo/commits/:nb				controllers.api.Repository.commits(user: String, repo: String, nb: Int, sha: Option[String])
-GET				/api/v1/repository/:user/:repo/commits/:nb/:sha		controllers.api.Repository.commits(user: String, repo: String, nb: Int, sha: Option[String])
-GET				/api/v1/repository/:user/:repo/contributors				controllers.api.Repository.contributors(user: String, repo: String)
-GET				/api/v1/repository/:user/:repo/watchers						controllers.api.Repository.watchers(user: String, repo: String)
-GET				/api/v1/repository/:user/:repo/languages					controllers.api.Repository.languages(user: String, repo: String)
-GET				/api/v1/user/:user/detail													controllers.api.User.detail(user: String)
-GET				/api/v1/user/:user/repositories										controllers.api.User.repos(user: String)
-GET				/api/v1/user/:user/geolocalisation								controllers.api.User.geolocalisation(user: String)
-GET				/api/v1/stats/:user/languages											controllers.api.Stats.languages(user: String)
-GET				/api/v1/stats/:user/:repo/impact									controllers.api.Stats.impact(user: String, repo: String)
-GET				/api/v1/stats/:user/:repo/timeline								controllers.api.Stats.timeline(user: String, repo: String)
+# Javascript routing
+GET        /assets/javascripts/routes                        controllers.Application.javascriptRoutes()
 
-GET     	/assets/*file               											controllers.Assets.at(path="/public", file)
+GET        /assets/*file                                     controllers.Assets.at(path="/public", file)

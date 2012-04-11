@@ -5,6 +5,7 @@ import modules.github._
 import play.api.libs.concurrent.Promise
 import models._
 import utils.CollectionMerger._
+import org.joda.time.LocalDate
 
 final class ModuleExtractData(override val ctx: Context) extends Module {
 	override lazy val modules =
@@ -24,7 +25,7 @@ trait ServiceExtractData {
 
 	def extractLanguagesStats(user: String): Promise[Map[String, Int]]
 	def extractUserActivity(user: String, repo: String): Promise[List[(Author, Int)]]
-	def extractCommitsInTimeline(user: String, repo: String): Promise[List[Commit]]
+	def extractCommitsInTimeline(user: String, repo: String): Promise[List[(LocalDate, Int)]]
 }
 
 class ServiceExtractDataImpl(override val serviceGHRepository: ServiceGithubRepository,
@@ -34,7 +35,8 @@ class ServiceExtractDataImpl(override val serviceGHRepository: ServiceGithubRepo
 		for {
 			commits <- serviceGHRepository.listCommits(user, repo, 100)
 		} yield {
-			commits.sortWith((recent, old) => recent.date.compareTo(old.date) < 0)
+			commits.groupBy(e => e.date.toLocalDate()).map(elem => elem._1 -> elem._2.size).toList
+			.sortWith((recent, old) => recent._1.compareTo(old._1) < 0)
 		}
 	}
 

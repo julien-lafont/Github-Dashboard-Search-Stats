@@ -35,7 +35,7 @@
 
 				if ($box.is(":not(:animated)")) {
 					if ($box.hasClass(opts.classHidden)) {
-						$box.animate({ height : '270px' }, function() {
+						$box.animate({ height : opts.finalSize }, function() {
 							$box.removeClass(opts.classHidden).addClass(opts.classVisible);
 						});
 						$btn.val(opts.txtOn);
@@ -87,7 +87,8 @@
 		txtOff : "More options", 
 		txtOn : "Less options", 
 		classVisible : "after", 
-		classHidden : "before" 
+		classHidden : "before",
+		finalSize: '220px'
 	};
 
 })(jQuery);

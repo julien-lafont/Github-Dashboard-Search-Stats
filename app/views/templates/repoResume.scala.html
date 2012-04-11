@@ -1,0 +1,31 @@
+<script type="text/template" id="template-repo-resume">
+	<div class="result" style="display:none" id="repo-resume-{{id}}">
+		<div class="line">
+			<div class="avatar">
+				<a href="{{owner.url}}">
+					<img src="{{owner.avatar}}" alt="avatar" />
+				</a>
+			</div>
+			<div class="detail">
+				<h4><a href="{{url}}" target="blank">{{name}}</a> <span class="badge badge-error" title="Forks">{{forks}}</span></h4>
+				<p>{{{description}}}</p>
+			</div>
+			<div class="actions">
+				<a class="btn btn-inverse showDetail" data-repo="{{name}}" data-user="{{owner.login}}">Show detail</a>
+			</div>
+		</div>
+		<div class="line">
+			<p>
+				<span title="Author"><i class="icon-user"></i> {{owner.login}}</span> 
+				<span title="Watchers"><i class="icon-eye-open"></i> {{watchers}}</span> 
+				<span title="Issues"><i class="icon-exclamation-sign"></i> {{issues}}</span> 
+				<span title="Created at"><i class="icon-calendar"></i> {{createdAt}}</span> 
+				<span title="Homepage"><a href="{{homepage}}"><i class="icon-home"></i></a></span> 
+				{{#if is_fork}}<span class="label label-info" title="Is a fork">Fork</span>{{/if}}
+				<span class="label label-{{#if is_private}}important{{else}}success{{/if}}">{{#if is_private}}Private{{else}}Public{{/if}}</span>
+			</p>
+
+		</div>
+		<div class="stats"></div>
+	</div>
+</script>

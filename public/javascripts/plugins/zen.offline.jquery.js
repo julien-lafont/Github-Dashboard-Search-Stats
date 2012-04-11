@@ -19,7 +19,6 @@
 			};
 
 			var updateMarker = function update() {
-				console.log("update");	
 				$base[navigator.onLine ? 'fadeOut' : 'fadeIn']('fast');
 			};
 				

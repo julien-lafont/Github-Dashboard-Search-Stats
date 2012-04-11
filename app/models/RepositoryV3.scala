@@ -21,7 +21,7 @@ object RepositoryV3 {
 		def reads(json: JsValue) = RepositoryV3(
 			(json \ "name").as[String],
 			(json \ "homepage").asOpt[String].getOrElse(""),
-			(json \ "url").as[String],
+			(json \ "html_url").as[String],
 			(json \ "watchers").as[Int],
 			(json \ "forks").as[Int],
 			(json \ "open_issues").as[Int],
