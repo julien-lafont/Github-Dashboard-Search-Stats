@@ -3,12 +3,22 @@
 @main("Zenexigit par Julien Lafont") {
 
 	<div class="edito">    
-    <h1>WTF ?</h1>
-		<p>Zenexigit is a little tool to look for projects on Github and show statistics on these project</p>
-		<p>Tools : <a href="#">PlayFramework 2.0</a>, Scala, Backbone and my keyboard.</p>
-
+    	<h1>About Zenexigit</h1>
+		<blockquote>
+			Zenexigit is a web application to search for git repositories on GitHub and to view information and statistics about these projects.
+		</blockquote>
+		
+		<dl>	
+			<dt>Server</dt>
+			<dd>PlayFramework 2.0 with Scala and Sindi (IOC container).</dd>
+			<dt>Client</dt>
+			<dd>Backbone (MVC framework), jQuery (dom, Ajax), Lawnchair (localstorage), Handlebars (templating) and UnderscoreJS (utility-belt).</dd>
+			<dt>Test</dt>
+			<dd>Spec2 & MochaJs</dd>
+		</dl>
+			
 		<h1>Public API</h1>
-		<p>This server is a middleware between Github and Yahoo WSs. It normalizes results and assure a sustainable API.</p>
+		<p>This server is a middleware between Github, Yahoo and others WS. It normalizes data and provide a sustainable API.</p>
 		<p>Documentation for <a href="@routes.Documentation.index()">API V1</a></p>
    </div> 
 }

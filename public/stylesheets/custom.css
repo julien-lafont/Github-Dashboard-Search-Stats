@@ -12,6 +12,10 @@ header.inner {
 	max-width: 850px !important;
 }
 
+.edito dd {
+	font-style: normal;
+	margin-bottom: 10px;
+}
 
 /*
 |--------------------------------------------------------------------------
