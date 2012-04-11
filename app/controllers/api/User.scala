@@ -32,10 +32,10 @@ object User extends Controller {
 
 				Async {
 					serviceYahooWs.findLocation(user.location).map { json =>
-						println(json);
 						val results = (json \ ("ResultSet") \ ("Found")).as[Int]
-						if (results < 1) NoContent
-						else Ok((json \ ("ResultSet") \ ("Results"))(0))
+						
+						if (results < 1) 	NoContent
+						else 				Ok((json \ ("ResultSet") \ ("Results"))(0))
 					}
 				}
 			}

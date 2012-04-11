@@ -25,7 +25,6 @@ object Stats extends Controller {
 	def timeline(user: String, repo: String) = Action {
 		Async {
 			serviceStats.extractCommitsInTimeline(user, repo).map(timeline => {
-				println(timeline)
 				Ok(Json.toJson(timeline))})
 		}
 	}
