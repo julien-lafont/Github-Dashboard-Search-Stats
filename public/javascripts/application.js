@@ -29,7 +29,6 @@ $(function() {
 	};
 	
 	zen.model.Repo = Backbone.Model.extend({
-
 		url : function url() {
 			return '/api/v1/repository/' + this.get('user') + '/' + this.get('repo') + '/detail';
 		},
@@ -39,7 +38,6 @@ $(function() {
 			repo.id = repo.owner.login+"-"+repo.name;
 			return repo;
 		}
-
 	});
 
 	zen.model.Repo.load = function load(id, callback) {
@@ -65,13 +63,12 @@ $(function() {
 	}
 
 	zen.model.RepoSet = Backbone.Collection.extend({
-
 		model : zen.model.Repo,
 		
 		url: function url() {
 			return '/api/v1/repository/search/'+this.query+'/'+this.page;
 		},
-
+		
 		initialize : function Repositories(obj) {
 			this.query = obj.query;
 			this.page = obj.page;
@@ -95,25 +92,6 @@ $(function() {
 		})
 	}
 
-	
-	/*zen.view.RepoDetailView = Backbone.View.extend({
-
-		el: "#main_content",
-		events : {},
-		collection : zen.model.Repo,
-
-		initialize : function initialize() {
-			_.bindAll(this, 'render');
-			this.tpl = Handlebars.compile($("#template-repo-detail").html());
-			this.model.bind('change', this.render);
-		},
-
-		render : function render() {
-			this.$el.append(this.tpl(this.model.toJSON()));
-			return this;
-		}
-	})*/
-	
 	zen.view.RepoResumeView = Backbone.View.extend({
 		el: "#results",
 		model: zen.model.Repo,
@@ -194,7 +172,7 @@ $(function() {
 						if (res) 		data[res.countrycode] = (data[res.countrycode] || 0) + 1;
 						if (--nb == 0)	lastCallback(data);	
 					},
-					function() { console.log("err"); nb--; }
+					function() { nb--; }
 				);
 			});
 		},

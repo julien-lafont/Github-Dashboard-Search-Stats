@@ -1,5 +1,5 @@
 zen.Router = Backbone.Router.extend({
-	
+
 	routes : { 
 		"" : 							"home", 
 		"client" : 						"home", 
@@ -7,17 +7,20 @@ zen.Router = Backbone.Router.extend({
 		"client/:user/:repo" : 			"detail"
 	},
 
+	// Show homepage
 	home : function() {
-		
-	},
 	
+	},
+
+	// Show search results
 	search : function(query) {
 		new zen.view.SearchLayout().render();
 		var repoList = zen.model.RepoSet.load(query, 1, function(list) {
 			new zen.view.SearchView({ collection: list });
 		});
 	},
-	
+
+	// Show repository details (graphs, timeline...)
 	detail : function(user, repo) {
 		var id = { user : user, repo : repo };
 		var repo = zen.model.Repo.load(id, function(repo) {
@@ -29,6 +32,7 @@ zen.Router = Backbone.Router.extend({
 });
 
 $(function() {
+	// Start backbone routing
 	zen.router = new zen.Router();
 	Backbone.history.start({ pushState : true });
 });
