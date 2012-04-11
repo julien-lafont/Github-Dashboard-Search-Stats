@@ -28,13 +28,14 @@ object User extends Controller {
 	def geolocalisation(user: String) = Action {
 		Async {
 			serviceGithubAuthor.load(user).map { user =>
-				if (user.location.length() <= 0) NotFound
+				if (user.location.isEmpty()) NotFound
 
 				Async {
 					serviceYahooWs.findLocation(user.location).map { json =>
-						val results: Int = (json \ ("ResultSet") \ ("Found")).as[Int]
+						println(json);
+						val results = (json \ ("ResultSet") \ ("Found")).as[Int]
 						if (results < 1) NotFound
-						Ok((json \ ("ResultSet") \ ("Results"))(0))
+						else Ok((json \ ("ResultSet") \ ("Results"))(0))
 					}
 				}
 			}

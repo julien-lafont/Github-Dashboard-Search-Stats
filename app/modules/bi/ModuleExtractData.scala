@@ -31,6 +31,9 @@ trait ServiceExtractData {
 class ServiceExtractDataImpl(override val serviceGHRepository: ServiceGithubRepository,
 	override val serviceGHAuthor: ServiceGithubAuthor) extends ServiceExtractData {
 
+	/**
+	 * Generate timeline from commits (= the number of commits for each day )
+	 */
 	def extractCommitsInTimeline(user: String, repo: String) = {
 		for {
 			commits <- serviceGHRepository.listCommits(user, repo, 100)
@@ -40,6 +43,9 @@ class ServiceExtractDataImpl(override val serviceGHRepository: ServiceGithubRepo
 		}
 	}
 
+	/**
+	 * Generate impact stats from commits (= the number of commits for each contributor)
+	 */
 	def extractUserActivity(user: String, repo: String) = {
 		for {
 			commits <- serviceGHRepository.listCommits(user, repo, 100)
@@ -49,6 +55,9 @@ class ServiceExtractDataImpl(override val serviceGHRepository: ServiceGithubRepo
 		}
 	}
 
+	/**
+	 * Extract the prefered languages from all repositories of one user
+	 */
 	def extractLanguagesStats(user: String) = {
 		for {
 			repos <- serviceGHAuthor.listRepositories(user)

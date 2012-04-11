@@ -194,7 +194,7 @@ $(function() {
 						if (res) 		data[res.countrycode] = (data[res.countrycode] || 0) + 1;
 						if (--nb == 0)	lastCallback(data);	
 					},
-					function() { nb--; }
+					function() { console.log("err"); nb--; }
 				);
 			});
 		},
@@ -368,15 +368,13 @@ $(function() {
 			if (cache) {
 				success(cache.data);
 			} else {
-				error |= $.noop
-				
 				$.ajax(url, {
 					dataType: 'json', 
 					success: function(res) {
 						zen.store.save({ key: url, data: res });
 						success(res);
 					}, 
-					error: (error || $.noop)() 
+					error: (error || $.noop)()
 				});
 			}
 		})

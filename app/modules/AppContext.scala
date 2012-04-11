@@ -8,6 +8,10 @@ import modules.yahoo._
 import modules.bi.ModuleExtractData
 import modules.bi.ModuleExtractData
 
+/**
+ * Production context
+ * IOC container for all modules/mocks
+ */
 object AppContext extends Context {
 	override lazy val modules =
 		new ModuleGithubAuthor(this) ::
