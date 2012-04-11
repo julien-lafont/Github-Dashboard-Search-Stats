@@ -1,7 +1,7 @@
 # Home page
 # (I'm seeking a better solution for this ugly [url] used by backbone)
-GET        /                                                 controllers.Application.index(url: Option[String] = None)
-GET        /client/*url                                      controllers.Application.index(url: Option[String])
+GET        /                                                 controllers.Application.index()
+GET        /client/*url                                      controllers.Application.blank(url: String)
 
 # API documentation
 GET        /doc                                              controllers.Documentation.index()

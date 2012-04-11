@@ -89,6 +89,11 @@ header.inner {
 	display: none
 }
 
+.loader {
+	margin:50px 0;
+	text-align: center
+}
+
 
 /*
 |--------------------------------------------------------------------------

@@ -1,7 +1,7 @@
 zen.view.RepoStatsView = Backbone.View.extend({
 	model: zen.model.Repo,
 	initialize: function initialize() {
-		_.bindAll(this, 'render', 'showImpact', 'showCommiters', 'showTimeline', 'showWatchers', 'showLanguages', 
+		_.bindAll(this, 'render', 'showImpact', 'showCommiters', 'showActivity', 'showWatchers', 'showLanguages', 
 						'loadStats', 'fetchGeolocInformations', 'showGeolocCommiters');
 		
 		this.infos = this.model.toPresenter();
@@ -28,30 +28,24 @@ zen.view.RepoStatsView = Backbone.View.extend({
 		zen.util.getJSONCache('/api/v1/repository/'+user+'/'+repo+'/watchers', this.showWatchers);
 		zen.util.getJSONCache('/api/v1/repository/'+user+'/'+repo+'/languages', this.showLanguages);
 		zen.util.getJSONCache('/api/v1/stats/'+user+'/'+repo+'/impact', this.showImpact);
-		zen.util.getJSONCache('/api/v1/stats/'+user+'/'+repo+'/timeline', this.showTimeline);
+		zen.util.getJSONCache('/api/v1/stats/'+user+'/'+repo+'/timeline', this.showActivity);
 	},
 	
 	// For each contributor, fetch its country and show in map
 	fetchGeolocInformations: function fetchGeolocInformations(commiters) {
 		var data = {};
-		var nb = Math.min(commiters.length, 200);
-		var lastCallback = this.showGeolocCommiters;
-		
+	
 		_(commiters).first(200).forEach(function(commiter) {
 			zen.util.getJSONCache('/api/v1/user/'+commiter.login+'/geolocalisation', 
 				function(res) {
-					if (res) 		data[res.countrycode] = (data[res.countrycode] || 0) + 1;
-					if (--nb == 0)	lastCallback(data);	
-				},
-				function() { nb--; }
+					if (res) data[res.countrycode] = (data[res.countrycode] || 0) + 1;
+				}
 			);
-			
-			// Fallback if there is an exception in geoloc
-			_.delay(function() {
-				if (nb>0) this.showGeolocCommiters(data);
-			}, 15000);
-			
 		});
+		
+		_.delay(_.bind(function() {
+			this.showGeolocCommiters(data);
+		}, this), 1000);
 	},
 
 	// Show contributors avatars
@@ -78,8 +72,8 @@ zen.view.RepoStatsView = Backbone.View.extend({
 		zen.util.scrollLeft($base);
 	},
 	
-	// Show timeline graph
-	showTimeline: function showTimeline(timeline) {
+	// Show activity graph
+	showActivity: function showTimeline(timeline) {
 		var $base = this.$el.find(".timeline").empty().hide();
 		
 		var data = new google.visualization.DataTable();
