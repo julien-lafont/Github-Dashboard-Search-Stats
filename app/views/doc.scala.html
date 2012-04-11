@@ -1,0 +1,97 @@
+@()(implicit languages: List[Tuple2[String, Seq[String]]]) 
+
+@main("Zenexigit par Julien Lafont : Documentation") {
+
+	<div class="doc">  
+		  
+    	<h2>Finder API</h2>		
+		<div>
+			<h3>Search repositories</h3>
+			<p>Eearch github repositories by keywords and main language.</p>
+			<p><code><a href="/api/v1/repository/search/scala">/api/v1/repository/search/<em>query</em></a></code><br />
+				<code><a href="/api/v1/repository/search/scala/1">/api/v1/repository/search/<em>query</em>/<em>page</em></a></code><br />
+				<code><a href="/api/v1/repository/search/scala/1/java">/api/v1/repository/search/<em>query</em>/<em>page</em>/<em>language</em></a></code>
+			</p>
+			<dl>
+				<dt>Query</dt>
+				<dd>Search this keywords (tip: you can use username:xx, fork:true, language:yy)</dd>
+				<dt>Page</dt>
+				<dd><span class="label label-info">Optionnal</span> Page number</dd>
+				<dt>Language</dt>
+				<dd><span class="label label-info">Optionnal</span> Main language
+			</dl>
+		</div>
+			
+		<h2>Repository API</h2>		
+		<div>
+			<h3>Detail</h3>
+			<p>Fetch full informations for a repository</p>
+			<p><code><a href="/api/v1/repository/scala/scala/detail">/api/v1/repository/<em>user</em>/<em>repo</em>/detail</a></code></p>
+			<dl>
+				<dt>User</dt>
+				<dd>Owner of the repository</dd>
+				<dt>Repo</dt>
+				<dd>Name of the repository</dd>
+			</dl>
+		
+			<h3>Commits</h3>
+			<p>Fetch last commits for a repository</p>
+			<p>	<code><a href="/api/v1/repository/scala/scala/commits">/api/v1/repository/search/<em>user</em>/<em>repo</em>/commits</a></code>
+				<code>/api/v1/repository/<em>user</em>/<em>repo</em>/commits/<em>nb</em></code>
+				<code>/api/v1/repository/<em>user</em>/<em>repo</em>/commits/<em>nb</em>/<em>sha</em></code>
+			</p>
+			<dl>
+				<dt>Nb</dt>
+				<dd><span class="label label-info">Optionnal</span> Number of results</dd>
+				<dt>Sha</dt>
+				<dd><span class="label label-info">Optionnal</span> Sha of first commit</dd>
+			</dl>
+			
+			<h3>Contributors</h3>
+			<p>Fetch all contributors (= commiters)</p>
+			<p><code><a href="/api/v1/repository/scala/scala/contributors">/api/v1/repository/<em>user</em>/<em>repo</em>/contributors</a></code></p>
+			
+			<h3>Watchers</h3>
+			<p>Fetch all watchers</p>
+			<p><code><a href="/api/v1/repository/scala/scala/watchers">/api/v1/repository/<em>user</em>/<em>repo</em>/watchers</a></code></p>
+			
+			<h3>Languages</h3>
+			<p>Fetch languages used in the repository</p>
+			<p><code><a href="/api/v1/repository/scala/scala/languages">/api/v1/repository/search/<em>user</em>/<em>repo</em>/languages</a></code></p>	
+		
+		</div>
+			
+		<h2>User API</h2>	
+		<div>
+			<h3>Detail</h3>
+			<p>Fetch full informations about a commiter</p>
+			<p><code><a href="/api/v1/user/scala/detail">/api/v1/user/<em>user</em>/detail</a></code></p>
+			
+			<h3>Repositories</h3>
+			<p>List user's repositories</p>
+			<p><code><a href="/api/v1/user/scala/repositories">/api/v1/user/<em>user</em>/repositories</a></code></p>
+			
+			<h3>Geolocalisation</h3>
+			<p>Fetch location informations about this user : Country, city, geo-positions<br />
+			   Only if the "location" field isn't empty !</p>
+			<p><code><a href="/api/v1/user/studiodev/geolocalisation">/api/v1/user/<em>user</em>/geolocalisation</a></code></p>
+		
+		</div>	
+		
+		<h2>Stats API</h2>		
+		<div>
+			<h3>Languages</h3>
+			<p>List languages used by this user (name and percentage)</p>
+			<p><code><a href="/api/v1/stats/studiodev/languages">/api/v1/stats/<em>user</em>/languages</a></code></p>
+			
+			<h3>Impact</h3>
+			<p>Fetch impact of each contributor on a repository (% of commits)</p>
+			<p><code><a href="/api/v1/stats/scala/scala/impact">/api/v1/stats/<em>user</em>/<em>repo</em>/impact</a></code></p>
+			
+			<h3>Timeline</h3>
+			<p>Fetch timeline projection of commits (number of commits per day)</p>
+			<p><code><a href="/api/v1/stats/scala/scala/timeline">/api/v1/stats/<em>user</em>/<em>repo</em>/timeline</a></code></p>
+		</div>
+		
+   </div> 
+}

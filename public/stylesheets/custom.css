@@ -212,6 +212,31 @@ header.inner {
 
 /*
 |--------------------------------------------------------------------------
+| Documentation
+|--------------------------------------------------------------------------
+*/
+
+.doc code {
+	display: inline-block;
+	margin-bottom: 3px;
+	width: auto;
+}
+
+.doc code em {
+	color: #FF3333;
+	font-style: normal;
+}
+
+.doc div {
+	margin-left: 40px;
+}
+
+.doc div a {
+	color: #373737;
+}
+
+/*
+|--------------------------------------------------------------------------
 | UItoTop jQuery Plugin 1.1
 | http://www.mattvarone.com/web-design/uitotop-jquery-plugin/
 |--------------------------------------------------------------------------
