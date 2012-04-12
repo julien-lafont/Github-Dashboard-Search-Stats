@@ -168,7 +168,7 @@ header.inner {
 .result .actions {
 	vertical-align:middle;
 	display:table-cell;
-	width: 105px;
+	width: 110px;
 	text-align: right;
 }
 
@@ -180,6 +180,10 @@ header.inner {
 	font-family: arial;
 	margin-bottom: 5px;
 	margin-right: 10px	
+}
+
+.result a.closeDetail {
+	display: none;
 }
 
 /*

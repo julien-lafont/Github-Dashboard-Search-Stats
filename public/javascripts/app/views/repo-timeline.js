@@ -12,8 +12,10 @@ zen.view.RepoTimelineView = Backbone.View.extend({
 		this.tpl = Handlebars.compile($("#template-repo-timeline").html());	// show detail layout
 		this.$el.html(this.tpl());
 
-		$("#repo-resume-"+this.infos.id).find('.showTimeline').hide();
-		$("#repo-resume-"+this.infos.id).find('.showDetail').show();
+		var $base = $("#repo-resume-"+this.infos.id);
+		$base.find('.showDetail').show();
+		$base.find('.showTimeline').hide();
+		if ($('.result').length>1) $base.find('.closeDetail').show();
 		
 		zen.util.getJSONCache('/api/v1/repository/'+this.infos.owner.login+'/'+this.infos.name+'/commits', this.showTimeline);
 	},

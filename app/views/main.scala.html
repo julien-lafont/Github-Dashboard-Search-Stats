@@ -36,7 +36,7 @@
 				<form action="#" class="form-horizontal form-search before">
 					<fieldset>
 						<h4>Search repositories</h4>
-						<input type="text" placeHolder="Search" class="search-query" />
+						<input type="text" placeHolder="Search" class="search-query" name="search" />
 						<div class="actions">
 							<input type="button" value="More options" class="btn btn-inverse btn-more-options" style="float: left" /> 
 							<input type="submit" value="Search" class="btn btn-info btn-search" style="float: right" />
@@ -47,7 +47,7 @@
 							<div class="control-group">
 								<label class="control-label" for="input01">Username</label>
 								<div class="controls">
-									<input type="text" class="input-medium" data-query="username:" />
+									<input type="text" class="input-medium" data-query="username:" name="username" />
 								</div>
 							</div>
 
@@ -113,16 +113,16 @@
 		<script src="@routes.Assets.at("javascripts/plugins/zen.search.jquery.js")"></script>
 		<script src="@routes.Assets.at("javascripts/plugins/zen.offline.jquery.js")"></script>
 
-		<script src="@routes.Assets.at("js/application.min.js")"></script>
-		<script src="@routes.Assets.at("js/models/repo.min.js")"></script>
-		<script src="@routes.Assets.at("js/models/reposet.min.js")"></script>
-		<script src="@routes.Assets.at("js/views/repo-resume.min.js")"></script>
-		<script src="@routes.Assets.at("js/views/repo-stats.min.js")"></script>
-		<script src="@routes.Assets.at("js/views/repo-timeline.min.js")"></script>
-		<script src="@routes.Assets.at("js/views/search-layout.min.js")"></script>
-		<script src="@routes.Assets.at("js/views/search-view.min.js")"></script>
-		<script src="@routes.Assets.at("js/util.min.js")"></script>
-		<script src="@routes.Assets.at("js/router.min.js")"></script>
+		<script src="@routes.Assets.at("javascripts/app/application.js")"></script>
+		<script src="@routes.Assets.at("javascripts/app/models/repo.js")"></script>
+		<script src="@routes.Assets.at("javascripts/app/models/reposet.js")"></script>
+		<script src="@routes.Assets.at("javascripts/app/views/repo-resume.js")"></script>
+		<script src="@routes.Assets.at("javascripts/app/views/repo-stats.js")"></script>
+		<script src="@routes.Assets.at("javascripts/app/views/repo-timeline.js")"></script>
+		<script src="@routes.Assets.at("javascripts/app/views/search-layout.js")"></script>
+		<script src="@routes.Assets.at("javascripts/app/views/search-view.js")"></script>
+		<script src="@routes.Assets.at("javascripts/app/util.js")"></script>
+		<script src="@routes.Assets.at("javascripts/app/router.js")"></script>
 	}{
 		@** Prod : Include plugins and app files packed and minimified **@
 		<script src="@routes.Assets.at("javascripts/plugins.pack.min.js")"></script>

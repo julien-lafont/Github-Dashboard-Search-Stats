@@ -15,8 +15,11 @@ zen.view.RepoStatsView = Backbone.View.extend({
 	
 	render: function render() {
 		this.$el.html(this.tpl());
-		$("#repo-resume-"+this.infos.id).find('.showDetail').hide();
-		$("#repo-resume-"+this.infos.id).find('.showTimeline').show();
+		
+		var $base = $("#repo-resume-"+this.infos.id);
+		$base.find('.showDetail').hide();
+		$base.find('.showTimeline').show();
+		if ($('.result').length>1) $base.find('.closeDetail').show();
 		
 		this.loadStats();
 		

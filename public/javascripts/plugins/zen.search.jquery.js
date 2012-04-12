@@ -51,6 +51,13 @@
 			var search = function(event) {
 				var url = opts.url;
 				var valid = false;
+				var $query = $base.find(".search-query");
+				
+				// Check allowed characters
+				if (/[:.?]/.test($query.val())) {
+					alert("You cannot search keywords with these specials characters '.?:'");
+					return; 
+				}
 				
 				// Build query with extra fields
 				$base.find("input, select").each(function() {
@@ -62,7 +69,6 @@
 				});
 				
 				// Add keywork to query
-				var $query = $base.find(".search-query");
 				if ($query.val() != "") {
 					url += $query.val();
 					valid = true;
