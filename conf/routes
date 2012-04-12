@@ -24,7 +24,4 @@ GET        /api/v1/stats/:user/languages                     controllers.api.Sta
 GET        /api/v1/stats/:user/:repo/impact                  controllers.api.Stats.impact(user: String, repo: String)
 GET        /api/v1/stats/:user/:repo/timeline                controllers.api.Stats.timeline(user: String, repo: String)
 
-# Javascript routing
-GET        /assets/javascripts/routes                        controllers.Application.javascriptRoutes()
-
 GET        /assets/*file                                     controllers.Assets.at(path="/public", file)
