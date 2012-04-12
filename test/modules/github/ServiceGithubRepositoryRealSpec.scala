@@ -86,7 +86,7 @@ class ServiceGithubRepositoryRealSpec extends Specification {
 			"Return a unique key :user-:user" in {
 				running(FakeApplication()) {
 					val json =  Json.toJson(serviceGithubRepository.load("playframework", "play20").value.get).toString()
-					json must /("key" -> "playframework/play20")
+					json must /("key" -> "playframework/Play20")
 				}
 			}
 			
