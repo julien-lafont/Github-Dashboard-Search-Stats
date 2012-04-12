@@ -17,13 +17,21 @@ zen.view.RepoTimelineView = Backbone.View.extend({
 		
 		zen.util.getJSONCache('/api/v1/repository/'+this.infos.owner.login+'/'+this.infos.name+'/commits', this.showTimeline);
 	},
-	
+
+	// Show timeline : list of commits for a project
 	showTimeline: function showTimeline(data) {
 		var $base = this.$el.find(".timeline").empty().hide();
 		var tplCommit = Handlebars.compile($("#template-commit").html());
-		console.log(data);
+		
+		// Remap Avatar from owner of the repo
+		data = _(data).map(_.bind(function(commit) { 
+			if (commit.author.avatar == "") commit.author.avatar = this.infos.owner.avatar; 
+			return commit; 
+		}, this));
+		
+		// Show commits in timeline
 		$base.append(tplCommit({ items: data }));
-		$base.fadeIn(1000);
+		$base.slideDown(1000);
 	}
 	
 });

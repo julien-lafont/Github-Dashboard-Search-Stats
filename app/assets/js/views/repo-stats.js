@@ -1,3 +1,6 @@
+/**
+ * Show statistics for a project
+ */
 zen.view.RepoStatsView = Backbone.View.extend({
 	model: zen.model.Repo,
 	initialize: function initialize() {
@@ -20,6 +23,7 @@ zen.view.RepoStatsView = Backbone.View.extend({
 		return this;
 	},
 	
+	// Load data async
 	loadStats: function loadStats() {
 		var user = this.infos.owner.login; 
 		var repo = this.infos.name;
@@ -35,18 +39,21 @@ zen.view.RepoStatsView = Backbone.View.extend({
 	// For each contributor, fetch its country and show in map
 	fetchGeolocInformations: function fetchGeolocInformations(commiters) {
 		var data = {};
+		var showCallback = this.showGeolocCommiters;
 	
-		_(commiters).first(200).forEach(function(commiter) {
+		var max = Math.min(commiters.length, 200)-1;
+		_(commiters).first(200).forEach(function(commiter, key) {
 			zen.util.getJSONCache('/api/v1/user/'+commiter.login+'/geolocalisation', 
 				function(res) {
-					if (res) data[res.countrycode] = (data[res.countrycode] || 0) + 1;
+					if (res) // If geoposition is valid, add the location
+						data[res.countrycode] = (data[res.countrycode] || 0) + 1;
+						
+					if (key == max) // If it's the last call, show map in 1s 
+						_.delay(function() { showCallback(data) }, 1000);
 				}
 			);
 		});
 		
-		_.delay(_.bind(function() {
-			this.showGeolocCommiters(data);
-		}, this), 1000);
 	},
 
 	// Show contributors avatars
