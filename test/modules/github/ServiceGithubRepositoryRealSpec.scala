@@ -11,7 +11,7 @@ import play.api.libs.json.Json
 
 class ServiceGithubRepositoryRealSpec extends Specification {
 
-	"Github Real Repository service" should {
+	"[TI Real] Github Repository service" should {
 		
 			"Search repositories by keywords" in {
 				running(FakeApplication()) {
@@ -81,7 +81,7 @@ class ServiceGithubRepositoryRealSpec extends Specification {
 			}
 	}
 	
-	"Repository JSON marshalling" should {
+	"[TI REAL] Repository JSON marshalling" should {
 			
 			"Return a unique key :user-:user" in {
 				running(FakeApplication()) {

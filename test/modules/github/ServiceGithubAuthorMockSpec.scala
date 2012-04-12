@@ -11,7 +11,7 @@ class ServiceGithubAuthorMockSpec extends Specification {
 
 	val user = "studiodev"
 		
-	"Github Mock Author service" should {
+	"[TI Mock] Github Author service" should {
 		
 		"fetch user details" in {
 			running(FakeApplication()) {
