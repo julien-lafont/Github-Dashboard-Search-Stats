@@ -11,6 +11,6 @@ class ServiceWSMock extends ServiceWS {
 	class FakeResponse(url: String) extends Response(null) {
 		override def header(name: String) = Some("")
 		override def status = 200
-		override lazy val body = Files.readFile(Play.current.getFile("fixtures/"+url.replaceAll("[/]", ">")))
+		override lazy val body = Files.readFile(Play.current.getFile("fixtures/"+url.replaceAll("[/?]", ">")))
 	}
 }
