@@ -1,7 +1,7 @@
 @(title: String)(content: Html)(implicit languages: List[Tuple2[String, Seq[String]]])
 
 @devOrProd(dev: Html)(prod: Html) = {
-    @if(play.api.Play.isDev(play.api.Play.current)) { @dev } else { @prod }
+    	@if(play.api.Play.isDev(play.api.Play.current)) { @dev } else { @prod }
 }
 
 <!DOCTYPE html>
@@ -81,9 +81,6 @@
 		</header>
 
 	</div>
-
-	
-	
 	
 	<div id="main_content_wrap" class="outer">
 		<section id="main_content" class="inner">
