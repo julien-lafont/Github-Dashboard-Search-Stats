@@ -7,16 +7,19 @@ zen.view.SearchView = Backbone.View.extend({
 		zen.results = []; // reset
 		this.pagination = zen.config.pagination_max;
 		
-		if (this.collection.length==0) {
+		
+		if (this.collection.length==0) {	// No result
+			
 			$(".no-result").show();
 			$(".waiting").hide();
+			
 		} else {
 		
 			// Add repositories in view
 			this.collection.each(function(repo) { this.add(repo) }, this);
 			zen.util.preloadNextRepos();
 		
-			// Activate infiniteScroll on this page
+			// Enable infiniteScroll on this page
 			$(window).scroll(zen.util.infiniteScroll);
 		}
 	},
