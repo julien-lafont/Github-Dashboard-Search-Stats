@@ -7,12 +7,13 @@ zen.view.RepoStatsView = Backbone.View.extend({
 		this.infos = this.model.toPresenter();
 		zen.router.navigate("client/"+this.infos.owner.login+"/"+this.infos.name);	// permalink
 
-		this.tpl = Handlebars.compile($("#template-layout-detail").html());	// show detail layout
+		this.tpl = Handlebars.compile($("#template-repo-stats").html());	// show detail layout
 	},
 	
 	render: function render() {
 		this.$el.html(this.tpl());
-		(this.options.fromList ? this.$el.parent().find('.showDetail') : $('.showDetail')).hide();	
+		$("#repo-resume-"+this.infos.id).find('.showDetail').hide();
+		$("#repo-resume-"+this.infos.id).find('.showTimeline').show();
 		
 		this.loadStats();
 		
@@ -52,9 +53,10 @@ zen.view.RepoStatsView = Backbone.View.extend({
 	showCommiters: function showCommiters(commiters) {
 		var $base = this.$el.find(".commiters").empty().hide();
 		var tplCommiter = Handlebars.compile($("#template-stats-commiters").html());
-		_(commiters).first(100).forEach(function(commiter) {
-			$base.append(tplCommiter(commiter));
-		});
+		
+		$base.append(tplCommiter({
+			items: _(commiters).first(100)
+		}));
 		$base.fadeIn(1000);
 		
 		zen.util.scrollRight($base);
@@ -64,9 +66,10 @@ zen.view.RepoStatsView = Backbone.View.extend({
 	showWatchers: function showWatchers(watchers) {
 		var $base = this.$el.find(".watchers").empty().hide();
 		var tplCommiter = Handlebars.compile($("#template-stats-commiters").html());
-		_(watchers).first(100).forEach(function(watcher) {
-			$base.append(tplCommiter(watcher));
-		});
+	
+		$base.append(tplCommiter({
+			items: _(watchers).first(100)
+		}));
 		$base.fadeIn(1000);
 		
 		zen.util.scrollLeft($base);

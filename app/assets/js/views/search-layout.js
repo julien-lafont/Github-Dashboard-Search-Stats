@@ -1,4 +1,4 @@
-zen.view.SearchLayout = Backbone.View.extend({
+zen.view.SearchLayoutView = Backbone.View.extend({
 	
 	el: '#main_content',
 	

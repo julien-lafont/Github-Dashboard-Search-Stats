@@ -3,7 +3,7 @@ zen.view.RepoResumeView = Backbone.View.extend({
 	model: zen.model.Repo,
 	
 	initialize: function initialize() {
-		_.bindAll(this, 'render', 'showDetail');
+		_.bindAll(this, 'render', 'showDetail', 'showTimeline');
 		this.tpl = Handlebars.compile($("#template-repo-resume").html());
 		
 		this.model.bind('change', this.render);
@@ -17,21 +17,26 @@ zen.view.RepoResumeView = Backbone.View.extend({
 		this.$el.append(this.tpl(repo));
 		
 		this.$el.find(".waiting").hide();
-		$("#repo-resume-"+repo.id).fadeIn(1000);
+		var $base = $("#repo-resume-"+repo.id).fadeIn(1000);
 		
-		this.initEvents(repo.id);
+		this.initEvents($base);
 		
 		return this;
 	},
 	
-	initEvents: function initEvents() {
-		$("#repo-resume-"+this.model.toPresenter().id).find('a.showDetail').on('click', this.showDetail);
+	initEvents: function initEvents($base) {
+		$base.find('a.showDetail').on('click', this.showDetail);
+		$base.find('a.showTimeline').on('click', this.showTimeline);
 	},
 	
-	// Open detail view
 	showDetail: function showDetail() {
-		var $stats = $("#repo-resume-"+this.model.toPresenter().id+' .stats');
+		var $stats = $("#repo-resume-"+this.model.toPresenter().id+' .stats').empty();
 		new zen.view.RepoStatsView({ el: $stats, model: this.model, fromList: true }).render();
+	},
+	
+	showTimeline: function showTimeline() {
+		var $stats = $("#repo-resume-"+this.model.toPresenter().id+' .stats').empty();
+		new zen.view.RepoTimelineView({ el: $stats, model: this.model, fromList: true }).render();
 	}
 	
 });

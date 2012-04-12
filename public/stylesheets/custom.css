@@ -167,7 +167,8 @@ header.inner {
 .result .actions {
 	vertical-align:middle;
 	display:table-cell;
-	width: 100px;
+	width: 105px;
+	text-align: right;
 }
 
 .result p {

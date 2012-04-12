@@ -51,9 +51,7 @@
 										<option value=""></option>
 										@languages.map { group => 
 											<optgroup label="@group._1">
-											@group._2.map { language =>
-												<option value="@language">@language</option>
-											}
+											@group._2.map { language => <option value="@language">@language</option> }
 										}
 									</select>
 								</div>
@@ -89,7 +87,9 @@
 	@templates.layoutSearch()
 	@templates.repoResume()
 	@templates.repoStats()
+	@templates.repoTimeline()
 	@templates.userAvatar()
+	@templates.userCommit()
 	
 	@** Globals libs from CDN **@
 	@helpers.jsCDN("jquery-1.7.2.min.js", 	"//cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js", "window.jQuery")
@@ -111,6 +111,7 @@
 	<script src="@routes.Assets.at("js/models/reposet.min.js")"></script>
 	<script src="@routes.Assets.at("js/views/repo-resume.min.js")"></script>
 	<script src="@routes.Assets.at("js/views/repo-stats.min.js")"></script>
+	<script src="@routes.Assets.at("js/views/repo-timeline.min.js")"></script>
 	<script src="@routes.Assets.at("js/views/search-layout.min.js")"></script>
 	<script src="@routes.Assets.at("js/views/search-view.min.js")"></script>
 	<script src="@routes.Assets.at("js/util.min.js")"></script>

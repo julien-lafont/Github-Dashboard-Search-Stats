@@ -7,9 +7,9 @@ GET        /client/*url                                      controllers.Applica
 GET        /doc                                              controllers.Documentation.index()
 
 # API V1  
-GET        /api/v1/repository/search/:query                  controllers.api.Finder.searchRepositories(query: String, page: Int=1, language: String="")
-GET        /api/v1/repository/search/:query/:page            controllers.api.Finder.searchRepositories(query: String, page: Int, language: String="")
-GET        /api/v1/repository/search/:query/:page/:language  controllers.api.Finder.searchRepositories(query: String, page: Int, language: String)
+GET        /api/v1/repository/search/:query                  controllers.api.Finder.searchRepositories(query: String, page: Int=1, language: Option[String] = None)
+GET        /api/v1/repository/search/:query/:page            controllers.api.Finder.searchRepositories(query: String, page: Int, language: Option[String] = None)
+GET        /api/v1/repository/search/:query/:page/:language  controllers.api.Finder.searchRepositories(query: String, page: Int, language: Option[String])
 GET        /api/v1/repository/:user/:repo/detail             controllers.api.Repository.detail(user: String, repo: String)
 GET        /api/v1/repository/:user/:repo/commits            controllers.api.Repository.commits(user: String, repo: String, nb: Int=30, sha: Option[String])
 GET        /api/v1/repository/:user/:repo/commits/:nb        controllers.api.Repository.commits(user: String, repo: String, nb: Int, sha: Option[String])
