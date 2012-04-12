@@ -1,4 +1,4 @@
-package modules.bi
+package modules.stats
 
 import org.joda.time.LocalDate
 import models.Author

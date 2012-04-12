@@ -5,7 +5,7 @@ import modules.ws._
 import modules.jsonWs._
 import modules.github._
 import modules.yahoo._
-import modules.bi.ModuleExtractData
+import modules.stats.ModuleExtractData
 
 object AppTestContext extends Context {
 	override lazy val modules =

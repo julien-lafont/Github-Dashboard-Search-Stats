@@ -1,4 +1,4 @@
-package modules.bi
+package modules.stats
 
 import sindi._
 import modules.github._

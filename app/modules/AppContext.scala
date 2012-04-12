@@ -5,8 +5,8 @@ import modules.ws._
 import modules.jsonWs._
 import modules.github._
 import modules.yahoo._
-import modules.bi.ModuleExtractData
-import modules.bi.ModuleExtractData
+import modules.stats.ModuleExtractData
+import modules.stats.ModuleExtractData
 
 /**
  * Production context
