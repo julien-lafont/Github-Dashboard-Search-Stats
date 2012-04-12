@@ -14,10 +14,10 @@ object User {
 			(json \ "avatar_url").as[String])
 
 		def writes(c: User): JsValue = JsObject(Seq(
-			"login" -> JsString(c.login),
+			"login" 		-> JsString(c.login),
 			"contributions" -> JsNumber(c.contributions),
-			"url" -> JsString(c.url),
-			"avatar" -> JsString(c.avatar)))
+			"url" 			-> JsString(c.url),
+			"avatar" 		-> JsString(c.avatar)))
 	}
 
 }

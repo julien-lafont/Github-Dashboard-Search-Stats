@@ -20,6 +20,7 @@ object AppTestContext extends Context {
 	// Dans l'environnement de test, on mock les appels aux WebServices
 	override val bindings: Bindings = bind[ServiceWS] to new ServiceWSMock()
 
+	// Services publics
 	val serviceJsonWs = from[ModuleJsonWS].service
 	val serviceGithubAuthor = from[ModuleGithubAuthor].service
 	val serviceGithubRepository = from[ModuleGithubRepository].service

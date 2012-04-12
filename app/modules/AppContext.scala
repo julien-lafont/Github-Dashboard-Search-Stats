@@ -10,7 +10,7 @@ import modules.stats.ModuleExtractData
 
 /**
  * Production context
- * IOC container for all modules/mocks
+ * IOC container for all modules
  */
 object AppContext extends Context {
 	override lazy val modules =
@@ -22,7 +22,7 @@ object AppContext extends Context {
 		new ModuleExtractData(this) ::
 		Nil
 
-	// Services accessible in controllers
+	// Services publics
 	val serviceGithubAuthor = from[ModuleGithubAuthor].service
 	val serviceGithubRepository = from[ModuleGithubRepository].service
 	val serviceYahooWs = from[ModuleYahooWS].service

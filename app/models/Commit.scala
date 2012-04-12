@@ -27,17 +27,17 @@ object Commit {
 		def writes(c: Commit): JsValue = JsObject(Seq(
 			"url" 		-> JsString(c.url),
 			"author" 	-> Json.toJson(c.author),
-			"message" -> JsString(c.message),
+			"message" 	-> JsString(c.message),
 			"date" 		-> Json.toJson(c.date),
-			"sha"			-> Json.toJson(c.sha)))
+			"sha"		-> Json.toJson(c.sha)))
 	}
 	
 	implicit object RepositoryTimelineFormat extends Writes[List[(LocalDate, Int)]] {
 		def writes(timeline: List[(LocalDate, Int)]): JsValue = JsArray(
 			timeline.map { elem => 
 				JsObject(List(
-					"date" -> JsString(elem._1.getDayOfMonth()+"/"+elem._1.getMonthOfYear()+"/"+elem._1.getYearOfCentury()), 
-					"nb"	 -> JsNumber(elem._2)
+					"date"	-> JsString(elem._1.getDayOfMonth()+"/"+elem._1.getMonthOfYear()+"/"+elem._1.getYearOfCentury()), 
+					"nb"	-> JsNumber(elem._2)
 				))	
 			}
 		)

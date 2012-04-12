@@ -23,7 +23,7 @@ zen.view.RepoTimelineView = Backbone.View.extend({
 		var $base = this.$el.find(".timeline").empty().hide();
 		var tplCommit = Handlebars.compile($("#template-commit").html());
 		
-		// Remap Avatar from owner of the repo
+		// FIX : Owner avatar in commits object is blank -> Copy its avatar from the owner object
 		data = _(data).map(_.bind(function(commit) { 
 			if (commit.author.avatar == "") commit.author.avatar = this.infos.owner.avatar; 
 			return commit; 

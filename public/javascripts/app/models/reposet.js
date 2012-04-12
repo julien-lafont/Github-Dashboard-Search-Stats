@@ -21,6 +21,7 @@ zen.model.RepoSet.load = function load(query, page, callback) {
 			callback(new zen.model.RepoSet(data));
 		} else {
 			if (!zen.util.isOnline()) return;
+			
 			var nodeSet = new zen.model.RepoSet({ query: query, page: page });
 			nodeSet.fetch({success: function(list) {
 				var nodeSetSave = nodeSet.toJSON(); nodeSetSave.key = key;

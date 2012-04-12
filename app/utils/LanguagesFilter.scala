@@ -13,6 +13,7 @@ object LanguagesFilter {
 	 */
 	def list() = {
 		Cache.getOrElse[List[Tuple2[String, Seq[String]]]]("languages")({
+			
 			// We need a Scala (and Typesafe?) lib for Yaml files
 			val languages = Yaml.load("languages.yml").asInstanceOf[LinkedHashMap[String, ArrayList[String]]]
 			languages.map(group => (group._1.toUpperCase -> group._2.toSeq)).toList.sortWith { _._1 > _._1 }

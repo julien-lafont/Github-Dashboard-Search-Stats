@@ -12,7 +12,7 @@ object Language {
 			json(1).as[Int])
 
 		def writes(c: Language): JsValue = JsObject(Seq(
-			"lang" -> JsString(c.language),
+			"lang" 	-> JsString(c.language),
 			"score" -> JsNumber(c.score)))
 	}
 

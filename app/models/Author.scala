@@ -20,11 +20,11 @@ object Author {
 			(json \ "name").asOpt[String].getOrElse((json \ "login").as[String]))
 
 		def writes(c: Author): JsValue = JsObject(Seq(
-			"login" -> JsString(c.login),
-			"url" -> JsString(c.url),
-			"avatar" -> JsString(c.avatar),
+			"login" 	-> JsString(c.login),
+			"url" 		-> JsString(c.url),
+			"avatar" 	-> JsString(c.avatar),
 			"location" -> JsString(c.location),
-			"name" -> JsString(c.name)))
+			"name" 		-> JsString(c.name)))
 	}
 
 	implicit object AuthorScoreFormat extends Writes[List[(Author, Int)]] {

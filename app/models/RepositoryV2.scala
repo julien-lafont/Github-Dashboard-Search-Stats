@@ -17,12 +17,12 @@ object RepositoryV2 {
 			(json \ "language").as[String])
 
 		def writes(r: RepositoryV2): JsValue = JsObject(Seq(
-			"name" -> JsString(r.name),
-			"username" -> JsString(r.username),
-			"homepage" -> JsString(r.homepage),
-			"url" -> JsString(r.url),
-			"watchers" -> JsNumber(r.watchers),
-			"language" -> JsString(r.language)))
+			"name" 		-> JsString(r.name),
+			"username" 	-> JsString(r.username),
+			"homepage" 	-> JsString(r.homepage),
+			"url" 		-> JsString(r.url),
+			"watchers" 	-> JsNumber(r.watchers),
+			"language" 	-> JsString(r.language)))
 	}
 
 }

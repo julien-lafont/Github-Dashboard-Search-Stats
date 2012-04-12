@@ -20,6 +20,7 @@ zen.model.Repo.load = function load(id, callback) {
 			callback(new zen.model.Repo(data));
 		} else {
 			if (!zen.util.isOnline()) return;
+			
 			var node = new zen.model.Repo(id);	// Fetch and save repo in cache
 			node.fetch({ success: function() {
 				zen.store.save(node.toJSON());
@@ -30,7 +31,7 @@ zen.model.Repo.load = function load(id, callback) {
 };
 
 /**
- * Load and show repository in .results zone
+ * Load and show immediately the repository 
  */
 zen.model.Repo.loadAndShow = function loadAndShowResume(repoId) {
 	zen.model.Repo.load({user: repoId.get('username'), repo: repoId.get('name')}, function(node) {

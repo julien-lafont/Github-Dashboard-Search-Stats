@@ -33,19 +33,19 @@ object RepositoryV3 {
 			(json \ "owner").as[Author])
 
 		def writes(r: RepositoryV3): JsValue = JsObject(Seq(
-			"name" -> JsString(r.name),
-			"homepage" -> JsString(r.homepage),
-			"url" -> JsString(r.url),
-			"watchers" -> JsNumber(r.watchers),
-			"forks" -> JsNumber(r.forks),
-			"is_fork" -> JsBoolean(r.isFork),
-			"is_private" -> JsBoolean(r.isPrivate),
-			"issues" -> JsNumber(r.issues),
-			"language" -> JsString(r.language),
-			"createdAt" -> Json.toJson(r.createdAt),
-			"description" -> JsString(r.description),
-			"owner" -> Json.toJson(r.owner),
-			"key" -> JsString(r.owner.login+"/"+r.name)))
+			"name" 			-> JsString(r.name),
+			"homepage" 		-> JsString(r.homepage),
+			"url" 			-> JsString(r.url),
+			"watchers" 		-> JsNumber(r.watchers),
+			"forks" 		-> JsNumber(r.forks),
+			"is_fork" 		-> JsBoolean(r.isFork),
+			"is_private"	-> JsBoolean(r.isPrivate),
+			"issues" 		-> JsNumber(r.issues),
+			"language" 		-> JsString(r.language),
+			"createdAt" 	-> Json.toJson(r.createdAt),
+			"description" 	-> JsString(r.description),
+			"owner" 		-> Json.toJson(r.owner),
+			"key" 			-> JsString(r.owner.login+"/"+r.name)))
 	}
 
 }
