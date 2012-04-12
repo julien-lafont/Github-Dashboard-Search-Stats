@@ -26,9 +26,8 @@ class ServiceGithubRepositoryWs(override val serviceJsonWs: ServiceJsonWS) exten
 		serviceJsonWs.fetchWithCache(query).map(_.as[List[User]])
 	}
 
-	override def listCommits(user: String, repo: String, nb: Int = 30, lastSha: Option[String] = None) = {
-		val query = Query("github.query.list_commits").set("user" -> user).set("repo" -> repo).set("nb" -> nb).set("sha" -> lastSha.getOrElse(""))
-		println(query.toUrl.get)
+	override def listCommits(user: String, repo: String, nb: Int = 30, lastSha: String = "") = {
+		val query = Query("github.query.list_commits").set("user" -> user).set("repo" -> repo).set("nb" -> nb).set("sha" -> lastSha)
 		serviceJsonWs.fetchWithCache(query).map(_.as[List[Commit]])
 	}
 

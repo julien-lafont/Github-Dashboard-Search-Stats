@@ -7,9 +7,9 @@ import play.api.libs.json.Json
 
 object Finder extends Controller {
 
-	def searchRepositories(search: String, page: Int=1, language: Option[String] = None) = Action {
+	def searchRepositories(search: String, page: Int=1, language: String = "") = Action {
 		Async {
-			serviceGithubRepository.search(search, page, language.getOrElse("")).map(repos =>
+			serviceGithubRepository.search(search, page, language).map(repos =>
 				Ok(Json.toJson(repos)))
 		}
 	}

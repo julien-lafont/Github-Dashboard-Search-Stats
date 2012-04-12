@@ -20,6 +20,6 @@ trait ServiceGithubRepository {
 	def load(user: String, repo: String): Promise[RepositoryV3]
 	def listContributors(user: String, repo: String, nb: Int = 30): Promise[List[User]]
 	def listWatchers(user: String, repo: String, nb: Int = 30): Promise[List[User]]
-	def listCommits(user: String, repo: String, nb: Int = 30, lastSha: Option[String] = None): Promise[List[Commit]]
+	def listCommits(user: String, repo: String, nb: Int = 30, lastSha: String = ""): Promise[List[Commit]]
 	def listLanguages(user: String, repo: String): Promise[JsValue]
 }
