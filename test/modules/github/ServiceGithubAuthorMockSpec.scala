@@ -11,13 +11,14 @@ class ServiceGithubAuthorMockSpec extends Specification {
 
 	val user = "studiodev"
 		
-	"Github Mock AuthorService" should {
+	"Github Mock Author service" should {
 		
 		"fetch user details" in {
 			running(FakeApplication()) {
 				val author = serviceGithubAuthor.load(user).value.get
 				(author.login) must beEqualTo(user)
 				(author.location) must beEqualTo("Montpellier")
+				(author.name) must beEqualTo("Julien Lafont")
 			}
 		}
 		

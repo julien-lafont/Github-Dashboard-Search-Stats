@@ -7,10 +7,11 @@ import play.Configuration
 import models._
 import modules.AppContext._
 import play.api.libs.json.JsValue
+import play.api.libs.json.Json
 
 class ServiceGithubRepositoryRealSpec extends Specification {
 
-	"Github Real RepositoryService" should {
+	"Github Real Repository service" should {
 		
 			"Search repositories by keywords" in {
 				running(FakeApplication()) {
@@ -78,6 +79,33 @@ class ServiceGithubRepositoryRealSpec extends Specification {
 					languages toString() must contain("Java")
 				}
 			}
+	}
+	
+	"Repository JSON marshalling" should {
+			
+			"Return a unique key :user-:user" in {
+				running(FakeApplication()) {
+					val json =  Json.toJson(serviceGithubRepository.load("playframework", "play20").value.get).toString()
+					json must /("key" -> "playframework/play20")
+				}
+			}
+			
+			"Return date in french format" in {
+				running(FakeApplication()) {
+					val json =  Json.toJson(serviceGithubRepository.load("playframework", "play20").value.get).toString()
+					json must /("createdAt" -> "7 sept. 2011 11:24:08")
+				}
+			}
+			
+			"Return the owner information" in {
+				running(FakeApplication()) {
+					val json =  Json.toJson(serviceGithubRepository.load("playframework", "play20").value.get).toString()
+					json must */("login" -> "playframework")
+					json must */("url" -> "https://api.github.com/users/playframework")
+					json must */("location" -> "")
+				}
+			}
+				
 	}
 	
 }
