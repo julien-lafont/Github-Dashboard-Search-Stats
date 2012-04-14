@@ -11,7 +11,7 @@ object LanguagesFilter {
 	/**
 	 * Load languages list from fixtures, group and sort the results
 	 */
-	def list() = {
+	implicit def list = {
 		Cache.getOrElse[List[Tuple2[String, Seq[String]]]]("languages")({
 			
 			// We need a Scala (and Typesafe?) lib for Yaml files

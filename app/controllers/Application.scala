@@ -4,13 +4,13 @@ import play.api.Routes
 import play.api.mvc._
 import play.api.cache.Cached
 import play.api.Play.current
-import utils.LanguagesFilter
 import play.api.templates.Html
 
 object Application extends Controller {
 
-	implicit val languages : List[Tuple2[String, Seq[String]]] = LanguagesFilter.list
-	
+	// Import implicit list of languages for templates
+	import utils.LanguagesFilter.list
+
 	def index() = Cached("homepage") {
 		Action {
 			Ok(views.html.index())
