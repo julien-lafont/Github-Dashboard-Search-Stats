@@ -18,12 +18,12 @@ zen.model.Repo = Backbone.Model.extend({
 /**
  * Load repository from WS or from Cache
  */
-zen.model.Repo.load = function load(id, success, error) {
+zen.model.Repo.load = function load(id, callbackSuccess, callbackError) {
 	var key = id.user+"/"+id.repo;
 	zen.store.get(key, function(data) { // Try to load repository from localstorage
 		
 		if (data) {	// Json in cache
-			success(new zen.model.Repo(data));
+			callbackSuccess(new zen.model.Repo(data));
 			
 		} else {    // Call WS
 			if (!zen.util.isOnline()) return;
@@ -32,9 +32,11 @@ zen.model.Repo.load = function load(id, success, error) {
 			node.fetch({ 
 				success: function() {
 					zen.store.save(node.toJSON());
-					success(node);
+					callbackSuccess(node);
 				},
-				error: error("This repository seems to be invalid !")
+				error: function() {
+					callbackError("This repository seems to be invalid !")
+				}
 			});
 		}
 		

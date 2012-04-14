@@ -17,22 +17,25 @@ zen.Router = Backbone.Router.extend({
 	// Show repository details (graphs, activity, watchers...)
 	detail : function detail(user, repo) {
 		var id = { user : user, repo : repo };
-		var repo = zen.model.Repo.load(id, function(repo) {
+		var repo = zen.model.Repo.load(id, 
+			function(repo) {
 				new zen.view.RepoResumeView({ model: repo, el: $("#main_content").empty()}).render();
 				new zen.view.RepoStatsView({ model: repo, el: $("#main_content .stats:first")}).render();
-		}, function(error) {
-			new zen.view.ErrorView({msg: error}).render()
+			}, function(error) {
+				new zen.view.ErrorView({msg: error}).render()
 		});
 	},
 	
 	// Show commits timeline
 	commits: function commits(user, repo) {
 		var id = { user : user, repo : repo };
-		var repo = zen.model.Repo.load(id, function(repo) {
- 			new zen.view.RepoResumeView({ model: repo, el: $("#main_content").empty()}).render();
-			new zen.view.RepoTimelineView({ model: repo, el: $("#main_content .stats:first")}).render();
-		}, function(error) {
-			new zen.view.ErrorView({msg: error}).render()
+		var repo = zen.model.Repo.load(id, 
+			function(repo) {
+ 				new zen.view.RepoResumeView({ model: repo, el: $("#main_content").empty()}).render();
+ 				new zen.view.RepoTimelineView({ model: repo, el: $("#main_content .stats:first")}).render();
+			}, 
+			function(error) {
+				new zen.view.ErrorView({msg: error}).render()
 		});
 	}
 
