@@ -18,8 +18,10 @@ zen.Router = Backbone.Router.extend({
 	detail : function detail(user, repo) {
 		var id = { user : user, repo : repo };
 		var repo = zen.model.Repo.load(id, function(repo) {
- 			new zen.view.RepoResumeView({ model: repo, el: $("#main_content").empty()}).render();
-			new zen.view.RepoStatsView({ model: repo, el: $("#main_content .stats:first")}).render();
+				new zen.view.RepoResumeView({ model: repo, el: $("#main_content").empty()}).render();
+				new zen.view.RepoStatsView({ model: repo, el: $("#main_content .stats:first")}).render();
+		}, function(error) {
+			new zen.view.ErrorView({msg: error}).render()
 		});
 	},
 	
@@ -29,6 +31,8 @@ zen.Router = Backbone.Router.extend({
 		var repo = zen.model.Repo.load(id, function(repo) {
  			new zen.view.RepoResumeView({ model: repo, el: $("#main_content").empty()}).render();
 			new zen.view.RepoTimelineView({ model: repo, el: $("#main_content .stats:first")}).render();
+		}, function(error) {
+			new zen.view.ErrorView({msg: error}).render()
 		});
 	}
 
