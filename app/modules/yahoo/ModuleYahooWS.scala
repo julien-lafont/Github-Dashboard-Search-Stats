@@ -19,6 +19,10 @@ trait ServiceYahooWS {
 }
 
 class ServiceYahooWSImpl(override val serviceJsonWs: ServiceJsonWS) extends ServiceYahooWS  {
+	
+	/**
+	 * Retreive geopositioning informations from a location (city, address, country)
+	 */
 	override def findLocation(location: String) = {
 		serviceJsonWs.fetchWithCache(Query("yahoo.query.geoloc").set("query" -> location))
 	}

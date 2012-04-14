@@ -6,6 +6,10 @@ import play.api.Play.current
 import play.api.Play
 
 class ServiceWSMock extends ServiceWS {
+	
+	/**
+	 * Mock the WS call and return data from the fixtures
+	 */
 	override def get(url: String) = Akka.future(new FakeResponse(url))
 
 	class FakeResponse(url: String) extends Response(null) {
