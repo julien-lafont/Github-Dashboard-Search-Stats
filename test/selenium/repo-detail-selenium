@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://127.0.0.1:9000/" />
+<title>Repo detail</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Repo detail</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>Vider cache LocalStorage</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>window.localStorage.clear()</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=search</td>
+	<td>scala</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@value='Search']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>The Scala programming language</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=#repo-resume-scala-scala .showDetail</td>
+	<td></td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>Attente chargement des modules</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().$.active == 0</td>
+	<td>30000</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>Liste des commiters</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>window.document.querySelectorAll(&quot;.commiters a&quot;).length &gt; 0</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>Liste des watchers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>window.document.querySelectorAll(&quot;.watchers a&quot;).length &gt; 0</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>Ouverture de la timeline</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=#repo-resume-scala-scala .showTimeline</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().$.active == 0</td>
+	<td>30000</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Timeline</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>window.document.querySelectorAll(&quot;#results .timeline .line&quot;).length &gt; 0</td>
+	<td>true</td>
+</tr>
+</tbody></table>
+</body>
+</html>
