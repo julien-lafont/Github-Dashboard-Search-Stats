@@ -16,6 +16,7 @@ packer({
 	path + "javascripts/app/views/repo-timeline.js",
 	path + "javascripts/app/views/search-layout.js",
 	path + "javascripts/app/views/search-view.js",
+	path + "javascripts/app/views/error.js",
 	path + "javascripts/app/util.js",
 	path + "javascripts/app/router.js"
  ],
