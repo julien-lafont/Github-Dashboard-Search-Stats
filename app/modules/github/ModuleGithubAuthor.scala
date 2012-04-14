@@ -14,7 +14,7 @@ final class ModuleGithubAuthor(override val ctx: Context) extends Module {
 
 trait ServiceGithubAuthor {
 	val serviceJsonWs: ServiceJsonWS
-	def load(user: String): Promise[Author]
-	def listRepositories(user: String, nb: Int = 30): Promise[List[RepositoryV3]]
+	def load(user: String): Promise[Option[Author]]
+	def listRepositories(user: String, nb: Int = 30): Promise[Option[List[RepositoryV3]]]
 }
 

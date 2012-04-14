@@ -6,6 +6,7 @@ import play.api.libs.concurrent.Promise
 import models._
 import utils.CollectionMerger._
 import org.joda.time.LocalDate
+import play.api.libs.json.JsObject
 
 class ServiceExtractDataImpl(override val serviceGHRepository: ServiceGithubRepository,
 	override val serviceGHAuthor: ServiceGithubAuthor) extends ServiceExtractData {
@@ -17,7 +18,7 @@ class ServiceExtractDataImpl(override val serviceGHRepository: ServiceGithubRepo
 		for {
 			commits <- serviceGHRepository.listCommits(user, repo, 100)
 		} yield {
-			commits.groupBy(e => e.date.toLocalDate()).map(elem => elem._1 -> elem._2.size).toList
+			commits.getOrElse(List()).groupBy(e => e.date.toLocalDate()).map(elem => elem._1 -> elem._2.size).toList
 			.sortWith((recent, old) => recent._1.compareTo(old._1) < 0)
 		}
 	}
@@ -28,7 +29,7 @@ class ServiceExtractDataImpl(override val serviceGHRepository: ServiceGithubRepo
 	def extractUserActivity(user: String, repo: String) = {
 		for {
 			commits <- serviceGHRepository.listCommits(user, repo, 100)
-			result = commits.map(_.author)
+			result = commits.getOrElse(List()).map(_.author)
 		} yield {
 			mergeAndCountList(result).toList.sortWith(_._2 > _._2)
 		}
@@ -40,10 +41,10 @@ class ServiceExtractDataImpl(override val serviceGHRepository: ServiceGithubRepo
 	def extractLanguagesStats(user: String) = {
 		for {
 			repos <- serviceGHAuthor.listRepositories(user)
-			result <- Promise.sequence(repos.map(repo =>
+			result <- Promise.sequence(repos.getOrElse(List()).map(repo =>
 				for {
 					listL <- serviceGHRepository.listLanguages(user, repo.name)
-					languages = listL.as[Map[String, Int]]
+					languages = listL.getOrElse(JsObject(Seq())).as[Map[String, Int]]
 				} yield languages))
 		} yield {
 			mergeMap(result.toList)(_ + _)

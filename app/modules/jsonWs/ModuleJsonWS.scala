@@ -5,6 +5,7 @@ import modules.ws._
 import utils.Query
 import play.api.libs.concurrent.Promise
 import play.api.libs.json.JsValue
+import play.api.libs.json.Reads
 
 final class ModuleJsonWS(override val ctx: Context) extends Module {
 	override lazy val modules = new ModuleWS(this) :: Nil
@@ -17,4 +18,5 @@ trait ServiceJsonWS {
 	val serviceWs: ServiceWS
 	def fetch(query: Query): Promise[JsValue]
 	def fetchWithCache(query: Query, expiration: Int = 3600): Promise[JsValue]
+	def fetchModel[T](query: Query, expiration: Int = 3600)(implicit fjs: Reads[T]): Promise[Option[T]]
 }

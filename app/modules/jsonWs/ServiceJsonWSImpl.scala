@@ -3,10 +3,10 @@ package modules.jsonWs
 import modules.ws._
 import utils.Query
 import play.api.libs.concurrent.Promise
-import play.api.libs.json.JsValue
 import play.api.cache.Cache
 import play.api.Play.current
 import play.api.PlayException
+import play.api.libs.json._
 
 class ServiceJsonWSImpl(override val serviceWs: ServiceWS) extends ServiceJsonWS {
 
@@ -17,6 +17,15 @@ class ServiceJsonWSImpl(override val serviceWs: ServiceWS) extends ServiceJsonWS
 	override def fetchWithCache(query: Query, expiration: Int = 3600) = {
 		fetchIfQueryValid(query)(url =>
 			Cache.getOrElse(url, expiration)(getResult(url)))
+	}
+	override def fetchModel[T](query: Query, expiration: Int = 3600)(implicit fjs: Reads[T]): Promise[Option[T]] = {
+		getModelOrNone[T](fetchWithCache(query, expiration))
+	}
+	private def getModelOrNone[T](json: Promise[JsValue])(implicit fjs: Reads[T]) : Promise[Option[T]] = {
+		json.map(res => res.\("message").asOpt[String] match {
+			case Some("Not Found") => None
+			case _ => Some(res.as[T])
+		})
 	}
 
 	private def fetchIfQueryValid(query: Query)(actionIfQueryValid: (String) => Promise[JsValue]) = {
