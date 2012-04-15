@@ -13,7 +13,7 @@ class ServiceStatsMockSpec extends Specification {
 	
 	val user = "studiodev";
 	
-	"[TI Mock] Statistics service" should {
+	"Statistical service [Mock] " should {
 	
 			"Extract preferred languages of a user" in {
 				running(FakeApplication()) {

@@ -9,7 +9,7 @@ import modules.AppContext._
 
 class ServiceYahooMockSpec extends Specification {
 
-	"[TI Real] Yahoo Geoposition service" should {
+	"Yahoo Geoposition service" should {
 		
 		"Find country and region from a city" in {
 			running(FakeApplication()) {

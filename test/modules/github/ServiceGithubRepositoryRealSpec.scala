@@ -11,7 +11,7 @@ import play.api.libs.json.Json
 
 class ServiceGithubRepositoryRealSpec extends Specification {
 
-	"[TI Real] Github Repository service" should {
+	"Github Repository service" should {
 		
 			"Search repositories by keywords" in {
 				running(FakeApplication()) {
@@ -40,7 +40,7 @@ class ServiceGithubRepositoryRealSpec extends Specification {
 			
 			"Fetch repository detail" in {
 				running(FakeApplication()) {
-					val repo = serviceGithubRepository.load("playframework", "play20").value.get
+					val repo = serviceGithubRepository.load("playframework", "play20").value.get.getOrElse(failure("No repo"))
 					repo.name must beEqualTo("Play20")
 					repo.homepage must beEqualTo("http://www.playframework.org/2.0")
 					repo.owner.login must beEqualTo("playframework")
@@ -49,7 +49,7 @@ class ServiceGithubRepositoryRealSpec extends Specification {
 			
 			"Fetch contributors list" in {
 				running(FakeApplication()) {
-					val contribs = serviceGithubRepository.listContributors("playframework", "play20").value.get
+					val contribs = serviceGithubRepository.listContributors("playframework", "play20").value.get.getOrElse(failure("No repo"))
 					contribs.length must beGreaterThan(20)
 					contribs.find(_.login=="guillaumebort") must beSome
 					contribs.find(_.login=="guillaumebort").get.contributions must beGreaterThan(100)
@@ -58,7 +58,7 @@ class ServiceGithubRepositoryRealSpec extends Specification {
 			
 			"Fetch watchers list" in {
 				running(FakeApplication()) {
-					val watchers = serviceGithubRepository.listWatchers("playframework", "play20").value.get
+					val watchers = serviceGithubRepository.listWatchers("playframework", "play20").value.get.getOrElse(failure("No repo"))
 					watchers.length must beGreaterThan(0)
 					watchers.head.login must not be empty 
 				}
@@ -66,7 +66,7 @@ class ServiceGithubRepositoryRealSpec extends Specification {
 			
 			"Fetch commits list" in {
 				running(FakeApplication()) {
-					val commits = serviceGithubRepository.listCommits("playframework", "play20").value.get
+					val commits = serviceGithubRepository.listCommits("playframework", "play20").value.get.getOrElse(failure("No repo"))
 					commits.length must beGreaterThan(0)
 					commits.head.author.name must not be empty
 				}
@@ -74,32 +74,39 @@ class ServiceGithubRepositoryRealSpec extends Specification {
 			
 			"Fetch languages" in {
 				running(FakeApplication()) {
-					val languages : JsValue = serviceGithubRepository.listLanguages("playframework", "play20").value.get
+					val languages : JsValue = serviceGithubRepository.listLanguages("playframework", "play20").value.get.getOrElse(failure("No repo"))
 					languages toString() must contain("Scala")
 					languages toString() must contain("Java")
 				}
 			}
+			
+			"Return None if the repository doesn't exist" in {
+				running(FakeApplication()) {
+					val repo = serviceGithubRepository.load("playframework", "jkqjdljqsldjlkqjd").value.get
+					repo must beNone
+				}
+			}
 	}
 	
-	"[TI REAL] Repository JSON marshalling" should {
+	"Repository JSON marshalling" should {
 			
 			"Return a unique key :user-:user" in {
 				running(FakeApplication()) {
-					val json =  Json.toJson(serviceGithubRepository.load("playframework", "play20").value.get).toString()
+					val json =  Json.toJson(serviceGithubRepository.load("playframework", "play20").value.get.getOrElse(failure("No repo"))).toString()
 					json must /("key" -> "playframework/Play20")
 				}
 			}
 			
 			"Return date in french format" in {
 				running(FakeApplication()) {
-					val json =  Json.toJson(serviceGithubRepository.load("playframework", "play20").value.get).toString()
+					val json =  Json.toJson(serviceGithubRepository.load("playframework", "play20").value.get.getOrElse(failure("No repo"))).toString()
 					json must /("createdAt" -> "7 sept. 2011 11:24:08")
 				}
 			}
 			
 			"Return the owner information" in {
 				running(FakeApplication()) {
-					val json =  Json.toJson(serviceGithubRepository.load("playframework", "play20").value.get).toString()
+					val json =  Json.toJson(serviceGithubRepository.load("playframework", "play20").value.get.getOrElse(failure("No repo"))).toString()
 					json must */("login" -> "playframework")
 					json must */("url" -> "https://api.github.com/users/playframework")
 					json must */("location" -> "")
