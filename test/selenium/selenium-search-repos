@@ -18,16 +18,6 @@
 </tr>
 <tr>
 	<td>echo</td>
-	<td>Vider le cache localstorage</td>
-	<td></td>
-</tr>
-<tr>
-	<td>runScript</td>
-	<td>window.localStorage.clear()</td>
-	<td></td>
-</tr>
-<tr>
-	<td>echo</td>
 	<td>Vérifier qu'il est impossible de faire une recherche sans critères</td>
 	<td></td>
 </tr>

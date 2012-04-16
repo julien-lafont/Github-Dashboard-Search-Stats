@@ -17,16 +17,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>echo</td>
-	<td>Vider cache LocalStorage</td>
-	<td></td>
-</tr>
-<tr>
-	<td>runScript</td>
-	<td>window.localStorage.clear()</td>
-	<td></td>
-</tr>
-<tr>
 	<td>clickAndWait</td>
 	<td>link=API V1</td>
 	<td></td>
@@ -39,7 +29,7 @@
 <tr>
 	<td>type</td>
 	<td>name=search</td>
-	<td>scala</td>
+	<td>twitcomet</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -48,7 +38,7 @@
 </tr>
 <tr>
 	<td>assertLocation</td>
-	<td>http://127.0.0.1:9000/client/search/scala</td>
+	<td>http://127.0.0.1:9000/client/search/twitcomet</td>
 	<td></td>
 </tr>
 <tr>
@@ -59,7 +49,7 @@
 <tr>
 	<td>type</td>
 	<td>name=username</td>
-	<td>playframework</td>
+	<td>studiodev</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -68,127 +58,102 @@
 </tr>
 <tr>
 	<td>assertLocation</td>
-	<td>http://127.0.0.1:9000/client/search/username:playframework%20scala</td>
+	<td>http://127.0.0.1:9000/client/search/username:studiodev%20twitcomet</td>
 	<td></td>
 </tr>
 <tr>
-	<td>waitForCondition</td>
-	<td>selenium.browserbot.getCurrentWindow().$.active == 0</td>
-	<td>30000</td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>css=#repo-resume-playframework-play-scala .showDetail</td>
-	<td></td>
-</tr>
-<tr>
-	<td>pause</td>
-	<td>500</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertLocation</td>
-	<td>http://127.0.0.1:9000/client/playframework/play-scala</td>
+	<td>waitForElementPresent</td>
+	<td>css=#repo-resume-studiodev-Twitcomet</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>css=#repo-resume-playframework-play-scala .showTimeline</td>
+	<td>css=#repo-resume-studiodev-Twitcomet .showDetail</td>
 	<td></td>
-</tr>
-<tr>
-	<td>pause</td>
-	<td>500</td>
-	<td></td>
-</tr>
-<tr>
-	<td>waitForCondition</td>
-	<td>selenium.browserbot.getCurrentWindow().$.active == 0</td>
-	<td>30000</td>
 </tr>
 <tr>
 	<td>assertLocation</td>
-	<td>http://127.0.0.1:9000/client/playframework/play-scala/commits</td>
+	<td>http://127.0.0.1:9000/client/studiodev/Twitcomet</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>css=#repo-resume-playframework-play-scala .showDetail</td>
-	<td></td>
-</tr>
-<tr>
-	<td>pause</td>
-	<td>500</td>
-	<td></td>
-</tr>
-<tr>
-	<td>waitForCondition</td>
-	<td>selenium.browserbot.getCurrentWindow().$.active == 0</td>
-	<td>30000</td>
-</tr>
-<tr>
-	<td>assertLocation</td>
-	<td>http://127.0.0.1:9000/client/playframework/play-scala</td>
-	<td></td>
-</tr>
-<tr>
-	<td>goBackAndWait</td>
-	<td></td>
+	<td>css=#repo-resume-studiodev-Twitcomet .showTimeline</td>
 	<td></td>
 </tr>
 <tr>
 	<td>assertLocation</td>
-	<td>http://127.0.0.1:9000/client/playframework/play-scala/commits</td>
+	<td>http://127.0.0.1:9000/client/studiodev/Twitcomet/commits</td>
 	<td></td>
 </tr>
 <tr>
-	<td>goBackAndWait</td>
-	<td></td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertLocation</td>
-	<td>http://127.0.0.1:9000/client/playframework/play-scala</td>
-	<td></td>
-</tr>
-<tr>
-	<td>goBackAndWait</td>
-	<td></td>
+	<td>click</td>
+	<td>css=#repo-resume-studiodev-Twitcomet .showDetail</td>
 	<td></td>
 </tr>
 <tr>
 	<td>assertLocation</td>
-	<td>http://127.0.0.1:9000/client/search/username:playframework%20scala</td>
+	<td>http://127.0.0.1:9000/client/studiodev/Twitcomet</td>
 	<td></td>
 </tr>
 <tr>
-	<td>goBackAndWait</td>
+	<td>goBack</td>
 	<td></td>
 	<td></td>
 </tr>
 <tr>
-	<td>assertLocation</td>
-	<td>http://127.0.0.1:9000/client/search/scala</td>
-	<td></td>
-</tr>
-<tr>
-	<td>goBackAndWait</td>
-	<td></td>
+	<td>waitForTextPresent</td>
+	<td>Timeline</td>
 	<td></td>
 </tr>
 <tr>
 	<td>assertLocation</td>
-	<td>http://127.0.0.1:9000/doc</td>
+	<td>http://127.0.0.1:9000/client/studiodev/Twitcomet/commits</td>
 	<td></td>
 </tr>
 <tr>
-	<td>goBackAndWait</td>
+	<td>goBack</td>
 	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Activity</td>
 	<td></td>
 </tr>
 <tr>
 	<td>assertLocation</td>
-	<td>http://127.0.0.1:9000/</td>
+	<td>http://127.0.0.1:9000/client/studiodev/Twitcomet</td>
+	<td></td>
+</tr>
+<tr>
+	<td>goBack</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Show stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>http://127.0.0.1:9000/client/search/username:studiodev%20twitcomet</td>
+	<td></td>
+</tr>
+<tr>
+	<td>goBack</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Results</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>http://127.0.0.1:9000/client/search/twitcomet</td>
 	<td></td>
 </tr>
 

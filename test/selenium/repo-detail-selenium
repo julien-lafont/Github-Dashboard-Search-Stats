@@ -17,16 +17,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>echo</td>
-	<td>Vider cache LocalStorage</td>
-	<td></td>
-</tr>
-<tr>
-	<td>runScript</td>
-	<td>window.localStorage.clear()</td>
-	<td></td>
-</tr>
-<tr>
 	<td>type</td>
 	<td>name=search</td>
 	<td>scala</td>
