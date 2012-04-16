@@ -33,26 +33,6 @@
 </tr>
 <tr>
 	<td>echo</td>
-	<td>Vérifier qu'il est impossible de faire une recherche avec un caractère interdit</td>
-	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>name=search</td>
-	<td>node.js</td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>//input[@value='Search']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertAlert</td>
-	<td>You cannot search keywords with these specials characters '.?:'</td>
-	<td></td>
-</tr>
-<tr>
-	<td>echo</td>
 	<td>Vérifie qu'un message d'erreur est affiché si il n'y a aucun résultats</td>
 	<td></td>
 </tr>
