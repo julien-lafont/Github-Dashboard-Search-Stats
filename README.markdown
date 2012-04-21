@@ -28,7 +28,7 @@
 * Traitements asynchrones et cache client (localstorage) / server
 * Résultats de recherche affichés en "infinite-scroll"
 * API REST pour accéder aux informations suivantes :
-  * Repository github : détail, liste des commits, des commiters, des watchers, des langauges
+  * Repository github : détail, liste des commits, des commiters, des watchers, des languages
   * User github : détail, liste des languages, liste des repositories
   * Stats : Activité d'un repository, timeline
   * Géolocalisation des utilisateurs (via Yahoo Geocoder)
