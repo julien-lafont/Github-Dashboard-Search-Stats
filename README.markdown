@@ -47,4 +47,4 @@ Cette application est distribuée sous licence Creative Commons BY-NC-SA 3.0.
 
 http://creativecommons.org/licenses/by-nc-sa/3.0/
 
--- Julien Lafont (http://www.studio-dev.fr)
+Auteur : Julien Lafont (http://www.studio-dev.fr)
