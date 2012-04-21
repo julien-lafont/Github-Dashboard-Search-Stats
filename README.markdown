@@ -1,4 +1,4 @@
-# Experimentation : Client GitHub
+# Expérimentation : Dashboard GitHub / Recherche de projets
 
 > Application expérimentale permettant de rechercher des projets sur Github et d'en extraire des statistiques détaillées
 
@@ -24,13 +24,10 @@
 ## Fonctionnalités
 
 * Recherche de projets Github avec plusieurs critères : nom, auteur, language principal
-* Statistique sur l'activité d'un dépôt (Meilleurs contributeurs, activité jour par jour)
-* Traitements asynchrones client et serveur
-* Mise en cache des requêtes github côté serveur
-* Mise en cache des requêtes ajax côté client (localstorage)
+* Statistiques sur l'activité d'un dépôt (Meilleurs contributeurs, activité jour par jour)
+* Traitements asynchrones et cache client (localstorage) / server
 * Résultats de recherche affichés en "infinite-scroll"
-* Tests unitaires, tests d'intégration et tests fonctionnels
-* API REST pour accéder aux informations
+* API REST pour accéder aux informations suivantes :
   * Repository github : détail, liste des commits, des commiters, des watchers, des langauges
   * User github : détail, liste des languages, liste des repositories
   * Stats : Activité d'un repository, timeline
@@ -47,5 +44,7 @@
 ## Licence
 
 Cette application est distribuée sous licence Creative Commons BY-NC-SA 3.0.
+
 http://creativecommons.org/licenses/by-nc-sa/3.0/
 
+-- Julien Lafont (http://www.studio-dev.fr)
