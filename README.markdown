@@ -35,9 +35,9 @@
 
 ## Exécution
 
-1. Installez PlayFramework 2.0 
+1. Installer le framework [PlayFramework 2.0](https://github.com/playframework/Play20) 
 
-2. Lancez simplement l'appli avec le serveur Play20 :
+2. Lancez l'application dans le serveur play intégré au framework :
 
     $ play run
 
